@@ -1,0 +1,17 @@
+bert-score=0.3.13=pypi_0
+huggingface-hub=0.23.5=pypi_0
+jieba=0.42.1=pypi_0
+loguru=0.5.3=py312h06a4308_4
+multiprocess=0.70.16=pypi_0
+openai=1.25.0=py312h06a4308_0
+pandas=2.2.2=py312h526ad5a_0
+prompt-toolkit=3.0.43=py312h06a4308_0
+prompt_toolkit=3.0.43=hd3eb1b0_0
+python=3.12.4=h5148396_1
+ratelimit=2.2.1=pypi_0
+readline=8.2=h5eee18b_0
+regex=2024.5.15=pypi_0
+torch=2.3.1=pypi_0
+rouge-chinese=1.0.3=pypi_0
+threadpoolctl=3.5.0=pypi_0
+tqdm=4.66.4=py312he106c6f_0
