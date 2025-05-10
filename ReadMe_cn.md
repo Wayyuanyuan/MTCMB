@@ -6,7 +6,7 @@
 </center>
 
 
-![title]([https://github.com/Wayyuanyuan/MTCMB/blob/main/pics/title1.png))
+![title](https://github.com/Wayyuanyuan/MTCMB/blob/main/pics/title1.png)
 
 <p align="center">
    📃 <a href="" target="_blank">Paper</a> • 🌐 <a href="" target="_blank">Website</a>  
