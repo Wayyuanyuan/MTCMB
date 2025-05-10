@@ -36,7 +36,6 @@
 
 ## 😊Dataset Description
 
-![pie-nest](https://github.com/Wayyuanyuan/CTCMB/blob/main/pics/line-simple-en.png)
 
 #### **Data Structure**
 
