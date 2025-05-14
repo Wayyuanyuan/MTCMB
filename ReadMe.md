@@ -144,7 +144,7 @@ python main.py \
 ##### Example of Invocation Using the OpenAI Library
 
 ```
-python main.py --step-chat data --api-model make_answer.chat.remote.openai_api.LlmOpenai --llm-name your_model_name  --base-url your_url --api-key your_key --num-process 12
+python main.py --step-chat data --api-model make_answer.chat.remote.openai_api.LlmOpenai --llm-name your_model_name  --base-url your_url --api-key your_key --num-process 12 --prompt-type   # Set the prompt type, 0 represents zero-shot, 1 represents few-shot, 2 represents CoT'
 ```
 
 
