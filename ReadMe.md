@@ -177,6 +177,7 @@ python main.py \
 --step-chat data/ \  # Directory containing the test questions
 --local-model /Path/To/LLM \  # Directory where the local large language model (LLM) is located
 --model-type LLM_name  # Name of the large language model; the custom template constructor must be written in `make_answer/chat/__init__.py` within the `name_model_dict`.
+--prompt-type   # Set the prompt type, 0 represents zero-shot, 1 represents few-shot, 2 represents CoT'
 ```
 
 ##### Example
@@ -194,22 +195,22 @@ python main.py --step-chat data/ --local-model  /mnt/data1/MedLLM_baselines/Taiy
 Our evaluation benchmark includes 11 datasets, each containing multiple questions with an empty 'answer' field. A brief example is provided below:
 
 ```
-{"question": "何谓血瘀?血瘀是如何形成的?", "answer": ""}
-{"question": "肾“其华在发”有何理论依据?", "answer": ""}
-{"question": "奇经八脉有何主要生理功能?", "answer": ""}
+{"id":1,"question": "4.阴中求阳的治法适用于","options": ["A.阳盛","B.阴阳两虚","C.阴虚","D.阳虚","E.阴盛"],"answer": ""   }
+{"id":2,"question": "15.精血同源是指","options": ["A.肝肾同源","B.心肾同源","C.脾胃同源","D.脾肾同源","E.心脾同源"],"answer": ""}
+{"id":3,"question": "8.气虚证可见。","options": ["A.自汗","B.盗汗","C.半身出汗","D.战汗","E.头汗"],"answer": ""}
 ```
 
 Our Evaluation Code Requires the Following Data Format
 
 ```
-{"question": "何谓血瘀?血瘀是如何形成的?", "answer": "血瘀是指血液运行不畅、停滞于血脉之中而形成的一种病理状态。其主要表现为皮肤出现青紫斑块、疼痛等症状。血瘀的形成原因包括外伤、情绪波动等因素，也与体内气虚、阳虚等内在因素有关。治疗上应以活血化瘀为主，可采用针灸、中药等方式进行调理。"}
-{"question": "肾“其华在发”有何理论依据?", "answer": "《黄帝内经》中记载：“人之五脏六腑、四肢百骸皆禀于自然，而血气亦各有所主。心藏神，肺藏魄，肝藏魂，脾藏意，肾藏志，此五者，皆藏于精。”其中，“肾藏志”，即指肾脏所藏之精神意志。“其华在发”，则说明肾脏的精神状态反映在外表上，即头发的状态。因此，从中医的角度来看，肾“其华在发”的理论依据是《黄帝内经》中的“五脏六腑、四肢百骸皆禀于自然，而血气亦各有所主。心藏神，肺藏魄，肝藏魂，脾藏意，肾藏志，此五者，皆藏于精。”这一理论认为，人体的各种生理功能都与五脏有关，而头发的状态则是由肾脏所支配的。因此，肾脏的精神状态可以通过头发来表现出来。"}
-{"question": "奇经八脉有何主要生理功能?", "answer": "奇经八脉是中医学中的重要理论之一，其主要生理功能包括调节全身气血运行、维持脏腑功能平衡、促进人体阴阳协调等方面。其中，任督二脉是奇经八脉的核心，通过调节心肾之间的水火相济关系，达到调和阴阳、平衡气血的目的；而冲任二脉则与女性生殖系统密切相关，可以调节月经、孕育胎儿等生理过程；带脉则是人体腹部的一条横行脉络，具有固护腰腹、调节脾胃等功能；阴维脉则为人体阴气的主要通道，可以调节人体阴液的，维持人体阴液的正常代谢；阳维脉则为人体阳气的主要通道，可以调节人体阳气的正常代谢。总之，奇经八脉在人体内发挥着重要的生理作用，对人体健康有着不可忽视的影响。"}
+{"id":1,"question": "4.阴中求阳的治法适用于","options": ["A.阳盛","B.阴阳两虚","C.阴虚","D.阳虚","E.阴盛"],"answer": "D"   }
+{"id":2,"question": "15.精血同源是指","options": ["A.肝肾同源","B.心肾同源","C.脾胃同源","D.脾肾同源","E.心脾同源"],"answer": "A"}
+{"id":3,"question": "8.气虚证可见。","options": ["A.自汗","B.盗汗","C.半身出汗","D.战汗","E.头汗"],"answer": "A"}
 ```
 
 Essentially, the 'answer' Field Is Populated with Model Responses. These responses are saved in a file named `mid.jsonl`.
 
-Submission Naming Convention for 11 Datasets. We have 11 datasets, and we expect submissions to follow the naming convention outlined below:
+Submission Naming Convention for 12 Datasets. We have 12 datasets, and we expect submissions to follow the naming convention outlined below:
 
 ```
 Primary Directory (Model Name)
