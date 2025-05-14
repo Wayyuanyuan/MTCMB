@@ -195,17 +195,17 @@ python main.py --step-chat data/ --local-model  /mnt/data1/MedLLM_baselines/Taiy
 Our evaluation benchmark includes 11 datasets, each containing multiple questions with an empty 'answer' field. A brief example is provided below:
 
 ```
-{"id":1,"question": "4.阴中求阳的治法适用于","options": ["A.阳盛","B.阴阳两虚","C.阴虚","D.阳虚","E.阴盛"],"answer": ""   }
-{"id":2,"question": "15.精血同源是指","options": ["A.肝肾同源","B.心肾同源","C.脾胃同源","D.脾肾同源","E.心脾同源"],"answer": ""}
-{"id":3,"question": "8.气虚证可见。","options": ["A.自汗","B.盗汗","C.半身出汗","D.战汗","E.头汗"],"answer": ""}
+{"id": 1,"question": "4.‘Formulas that seek yang within yin’ is applicable to?","options": ["A.Yang excess","B.Dual deficiency of yin and yang","C.Yin deficiency","D.Yang deficiency","E.Yin excess"],"answer": ""}
+{"id": 2,"question": "15.What does ‘Essence and blood share the same source’ refer to? ","options": ["A.Liver and kidney share the same source","B.Heart and kidney share the same source","C.Spleen and stomach share the same source","D.Spleen and kidney share the same source","E.Heart and spleen share the same source"],"answer": ""}
+{"id":3,"question": "8.The symptoms of Qi deficiency pattern include。","options": ["A.Spontaneous sweating","B.Night sweats","C.Hemilateral sweating","D.Sweating after shivering","E.Head sweating"],"answer": ""}
 ```
 
 Our Evaluation Code Requires the Following Data Format
 
 ```
-{"id":1,"question": "4.阴中求阳的治法适用于","options": ["A.阳盛","B.阴阳两虚","C.阴虚","D.阳虚","E.阴盛"],"answer": "D"   }
-{"id":2,"question": "15.精血同源是指","options": ["A.肝肾同源","B.心肾同源","C.脾胃同源","D.脾肾同源","E.心脾同源"],"answer": "A"}
-{"id":3,"question": "8.气虚证可见。","options": ["A.自汗","B.盗汗","C.半身出汗","D.战汗","E.头汗"],"answer": "A"}
+{"id": 1,"question": "4.‘Formulas that seek yang within yin’ is applicable to?","options": ["A.Yang excess","B.Dual deficiency of yin and yang","C.Yin deficiency","D.Yang deficiency","E.Yin excess"],"answer": "D"}
+{"id": 2,"question": "15.What does ‘Essence and blood share the same source’ refer to? ","options": ["A.Liver and kidney share the same source","B.Heart and kidney share the same source","C.Spleen and stomach share the same source","D.Spleen and kidney share the same source","E.Heart and spleen share the same source"],"answer": "A"}
+{"id":3,"question": "8.The symptoms of Qi deficiency pattern include。","options": ["A.Spontaneous sweating","B.Night sweats","C.Hemilateral sweating","D.Sweating after shivering","E.Head sweating"],"answer": "A"}
 ```
 
 Essentially, the 'answer' Field Is Populated with Model Responses. These responses are saved in a file named `mid.jsonl`.
