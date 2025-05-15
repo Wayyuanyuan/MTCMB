@@ -33,7 +33,6 @@
 
 
 ## 📍Ranking List
-Min-Max Normalized Score (MMN Score)
  
 #### 🔆Universal LLMs
 
@@ -92,20 +91,20 @@ Min-Max Normalized Score (MMN Score)
 | Model            | 1.TCM-ED-A | 2.TCM-ED-B | 3.TCM-FT  | 4.TCM-eEE | 5.TCM-CHGD | 6.TCM-LitData | 7.TCM-MSDD | 8.TCM-Diagnosis | 9.TCM-PR | 10.TCM-FRD | 11.SE-A   | 12.SE-B |
 | ---------------- | ---------- | ---------- | --------- | --------- | ---------- | ------------- | ---------- | --------------- | -------- | ---------- | --------- | ------- |
 | WINGPT2-14B-Chat | 40.25      | 40.98      | 84.42     | 57        | 40         | 44            | 17         | 45              | 22       | 35         | 43.2      | 46      |
-| Few-Shot         | 41         | 44.9       | 85.13     | 69        | 44         | 38            | 23         | 48              | 21       | **43**     | 39.38     | 44      |
-| CoT              | 42.08      | 41.88      | 84.66     | 52        | 42         | 36            | 16.75      | 47              | 19       | 30         | 43.1      | 32      |
+| WINGPT2-14B-Chat Few-Shot         | 41         | 44.9       | 85.13     | 69        | 44         | 38            | 23         | 48              | 21       | **43**     | 39.38     | 44      |
+| WINGPT2-14B-Chat CoT              | 42.08      | 41.88      | 84.66     | 52        | 42         | 36            | 16.75      | 47              | 19       | 30         | 43.1      | 32      |
 | TaiYi-LLM        | 39.92      | 47.71      | 82.82     | 49        | 29         | **61**        | 13.5       | 49              | 11       | 30         | 24.07     | 28      |
-| Few-Shot         | 39.67      | 42.94      | 80.18     | 55        | 25         | 43            | 35.5       | 48              | 19       | 29         | 28.13     | 40      |
-| CoT              | 39.17      | 39.54      | 78.83     | 32        | 32         | 47            | 31.75      | 35              | 10       | 29         | 25.73     | 30      |
+| TaiYi-LLM Few-Shot         | 39.67      | 42.94      | 80.18     | 55        | 25         | 43            | 35.5       | 48              | 19       | 29         | 28.13     | 40      |
+| TaiYi-LLM CoT              | 39.17      | 39.54      | 78.83     | 32        | 32         | 47            | 31.75      | 35              | 10       | 29         | 25.73     | 30      |
 | DISC-MedLLM      | 31.33      | 32.42      | 80.34     | 45        | 34         | 19            | 3          | 44              | 19       | 26         | 35        | 0       |
-| Few-Shot         | 27.17      | 29.31      | 82.88     | 31        | 28         | 22            | 1.5        | 38              | 17       | 32         | 37.42     | 2       |
-| CoT              | 26.58      | 31.42      | 83.45     | 24        | 23         | 24            | 4          | 37              | 7        | 25         | 42.52     | 0       |
+| DISC-MedLLM  Few-Shot         | 27.17      | 29.31      | 82.88     | 31        | 28         | 22            | 1.5        | 38              | 17       | 32         | 37.42     | 2       |
+| DISC-MedLLM CoT              | 26.58      | 31.42      | 83.45     | 24        | 23         | 24            | 4          | 37              | 7        | 25         | 42.52     | 0       |
 | HuatuoGPT-o1-72b | 75.17      | **82.27**  | 86.32     | 82        | 45         | 40            | 20.25      | 45              | 24       | **45**     | 51.3      | 70      |
-| Few-Shot         | 73         | 81.13      | 86.91     | 80        | **48**     | 44            | 34.25      | 41              | 32       | 34         | 52.2      | 68      |
-| CoT              | 72         | 79.13      | 86.86     | 82        | **48**     | 43            | 30         | 42              | 26       | 35         | 58.65     | 70      |
+| HuatuoGPT-o1-72b Few-Shot         | 73         | 81.13      | 86.91     | 80        | **48**     | 44            | 34.25      | 41              | 32       | 34         | 52.2      | 68      |
+| HuatuoGPT-o1-72b CoT              | 72         | 79.13      | 86.86     | 82        | **48**     | 43            | 30         | 42              | 26       | 35         | 58.65     | 70      |
 | Baichuan-14b-M1  | 79.83      | 82.02      | **87.49** | 82        | 46         | **63**        | 35.5       | 46              | 33       | 38         | 70.36     | 66      |
-| Few-Shot         | 28.5       | 80.88      | 87.31     | 80        | 42         | 57            | **46.75**  | **51**          | **38**   | 32         | 73.36     | **72**  |
-| CoT              | **85.08**  | 55.81      | 87.07     | **84**    | 44         | 34            | 36.5       | **51**          | 37       | 20         | **76.09** | 68      |
+| Baichuan-14b-M1 Few-Shot         | 28.5       | 80.88      | 87.31     | 80        | 42         | 57            | **46.75**  | **51**          | **38**   | 32         | 73.36     | **72**  |
+| Baichuan-14b-M1 CoT              | **85.08**  | 55.81      | 87.07     | **84**    | 44         | 34            | 36.5       | **51**          | 37       | 20         | **76.09** | 68      |
 
 ## 😊Dataset Description
 
@@ -116,7 +115,7 @@ Dataset: **5** Dimensions, **12** Datasets
 
 The following figure shows the data volume distribution in four dimensions: language understanding, diagnosis, prescription recommendation, and safety assessment:
 
-![pie-nest](https://github.com/Wayyuanyuan/MTCMB/blob/main/pics/area-stack%20-en.png)
+![pie-nest](https://github.com/Wayyuanyuan/MTCMB/blob/main/pics/line-simple-en.png)
 
 🥸 **Knowledge Question Answering Dimension** contains three data sets, namely TCM-ED-A (1200), TCM-ED-B (4800), TCM-FT (100)
 
