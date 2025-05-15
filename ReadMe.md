@@ -33,6 +33,7 @@
 
 
 ## 📍Ranking List
+Min-Max Normalized Score (MMN Score)
  
 #### 🔆Universal LLMs
 
