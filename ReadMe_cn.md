@@ -106,7 +106,7 @@
 
 语言理解、诊断、方剂推荐、安全评价**4个维度**的数据量分布如下图所示
 
-![pie-nest](https://github.com/Wayyuanyuan/MTCMB/blob/main/pics/area-stack%20-ch.png)
+![pie-nest](https://github.com/Wayyuanyuan/MTCMB/blob/main/pics/line-simple-ch.png)
 
 🥸 **知识问答**维度包含三个数据集，分别是TCM-ED-A（1200）、TCM-ED-B（4800）、TCM-FT（100）
 
