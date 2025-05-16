@@ -140,8 +140,8 @@
 |              | [TCM-Diagnosis](https://github.com/Wayyuanyuan/MTCMB/blob/main/dataset_info/TCM-Diagnosis.md) | 200   | 根据症状表现给出疾病名称、证名、病位、病性。           | 湖南中医药大学提供的真实内外妇儿证型数据集                   | 按照内外妇儿四个科目每科抽取50例              | BERTScore、ROUGE 和 BLEU三者取平均 |
 | 方剂推荐     | [TCM-PR](https://github.com/Wayyuanyuan/MTCMB/blob/main/dataset_info/TCM-PR.md)        | 100   | 根据临床信息推荐合适的中药处方。                       | [阿里云天池实验室CCL25-Eval任务9数据集子任务2]()             | 从数据集随机抽取100道题目，并且由专业人员复核 | CCL25-Eval 任务9的task2_score      |
 |              | [TCM-FRD](https://github.com/Wayyuanyuan/MTCMB/blob/main/dataset_info/TCM-FRD.md)       | 200   | 根据证的表现给出治法、方剂名、药物组成（不包含剂量）。 | 湖南中医药大学提供的真实内外妇儿证型数据集                   | 内外妇儿共抽取200例                           | BERTScore、ROUGE 和 BLEU三者取平均 |
-| 中医安全评价 | [SE-A](https://github.com/Wayyuanyuan/MTCMB/blob/main/dataset_info/SE-A%262.md)     | 50    | 填空题                                                 | 湖南中医药大学提供的安全性问题数据集                         | 常见中药及针灸禁忌填空题（50题）              | 大模型评分                         |
-|              | [SE-B](https://github.com/Wayyuanyuan/MTCMB/blob/main/dataset_info/SE-A%262.md)     | 50    | 选择题                                                 | 湖南中医药大学提供的安全性问题数据集                         | 常见中药及针灸禁忌选择题（50题）              | 准确率                             |
+| 中医安全评价 | [SE-A](https://github.com/Wayyuanyuan/MTCMB/blob/main/dataset_info/TCM-SAFE1%262.md)     | 50    | 填空题                                                 | 湖南中医药大学提供的安全性问题数据集                         | 常见中药及针灸禁忌填空题（50题）              | 大模型评分                         |
+|              | [SE-B](https://github.com/Wayyuanyuan/MTCMB/blob/main/dataset_info/TCM-SAFE1%262.md)     | 50    | 选择题                                                 | 湖南中医药大学提供的安全性问题数据集                         | 常见中药及针灸禁忌选择题（50题）              | 准确率                             |
 
 
 
