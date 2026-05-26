@@ -7,11 +7,51 @@ from loguru import logger
 
 from make_answer.chat.chat_invoker import ChatInvoker
 from make_answer.works import question_prompt_dict
+from mtcmb_datasets import (
+    CANONICAL_DATA_ROOT,
+    Purpose,
+    _should_include,
+    iter_benchmark_files,
+    load_records,
+    shot_from_prompt_type,
+)
+
+
+def _load_processed_ids(mid_file: str) -> set[int]:
+    """断点续传：按已写入 mid.jsonl 的 id 跳过，避免 few-shot 下行号与题号错位。"""
+    done: set[int] = set()
+    if not os.path.exists(mid_file):
+        return done
+    with open(mid_file, encoding="utf-8") as f:
+        for line in f:
+            line = line.strip()
+            if not line:
+                continue
+            rec = json.loads(line)
+            if rec.get("id") is not None:
+                done.add(int(rec["id"]))
+    return done
+
+
+def _apply_record_filters(
+    data_lines: list[dict],
+    *,
+    limit: int | None = None,
+    ids: set[int] | None = None,
+) -> list[dict]:
+    if ids:
+        data_lines = [r for r in data_lines if int(r.get("id", -1)) in ids]
+    if limit is not None and limit > 0:
+        data_lines = data_lines[:limit]
+    return data_lines
 
 
 def chat_process(
     chat_invoker: ChatInvoker,prompt_type:int, model_name: str,
-    data_root: str, output_root: str = "output", num_process: int = 1
+    data_root: str, output_root: str = "output", num_process: int = 1,
+    datasets: list[str] | None = None,
+    limit: int | None = None,
+    ids: set[int] | None = None,
 ):
     """答案生成主流程
 
@@ -22,47 +62,91 @@ def chat_process(
             data_root: 输入数据根目录（包含多个JSONL文件）
             output_root: 输出根目录（默认"output"） ，传递过来的是output/模型名
             num_process: 并发线程数（实际使用线程池控制并发）
+            datasets: 仅处理这些数据集文件名（如 3.TCM_FT_question_points.jsonl）
+            limit: 最多再处理多少条（试跑可设 1；0/None 表示不限制）
+            ids: 仅处理指定 id（如 {1}）
         """
+    dataset_filter = (
+        {f.strip() for f in datasets if f.strip()} if datasets else None
+    )
     # 创建线程池
     with ThreadPoolExecutor(max_workers=num_process) as executor:
-        # 遍历输入目录中的所有数据文件
-        for data_file in os.listdir(data_root):
-            data_path = os.path.join(data_root, data_file) # 构建完整文件路径
-            logger.info(f"Start process {data_path}")
+        shot = shot_from_prompt_type(prompt_type)
+        use_loader = os.path.normpath(data_root) == os.path.normpath(str(CANONICAL_DATA_ROOT))
+
+        file_iter = (
+            iter_benchmark_files()
+            if use_loader
+            else ((f, os.path.join(data_root, f)) for f in os.listdir(data_root))
+        )
+
+        for data_file, data_path in file_iter:
+            if not data_file.endswith(".jsonl") or data_file.startswith("._"):
+                continue
+            if dataset_filter and data_file not in dataset_filter:
+                continue
+            logger.info(f"Start process {data_path} (shot={shot.value})")
 
             # 构建输出目录（格式：output_root/数据集名_不含后缀jsonl）
             output_dir = os.path.join(output_root,os.path.splitext(data_file)[0])
             if not os.path.exists(output_dir):
                 os.makedirs(output_dir)   # 创建多级目录
 
-            # 中间文件路径（用于断点续传）
             mid_file = os.path.join(output_dir, "mid.jsonl")
-            line_count = 0
+            processed_ids = _load_processed_ids(mid_file)
+            if processed_ids:
+                logger.info(
+                    f"Resume {mid_file}: skip {len(processed_ids)} id(s), "
+                    f"e.g. {sorted(processed_ids)[:8]}"
+                )
 
-            # 断点续传机制：如果中间文件存在，跳过已处理行
-            if os.path.exists(mid_file):
-                print(mid_file)
-                # 统计已有行数（使用生成器表达式节省内存）
-                with open(mid_file, encoding="utf-8") as f:
-                    line_count = sum(1 for _ in f)
-                if line_count:
-                    logger.info(f"Find {line_count} lines, skip")
+            if use_loader:
+                all_lines = load_records(
+                    data_file, purpose=Purpose.BENCHMARK, shot=shot,
+                )
+                data_lines = [
+                    r for r in all_lines
+                    if int(r["id"]) not in processed_ids
+                ]
+                data_lines = _apply_record_filters(
+                    data_lines, limit=limit, ids=ids,
+                )
+                total_count = len(all_lines)
+                done_count = total_count - len(data_lines)
+            else:
+                data_lines = []
+                with open(data_path, encoding="utf-8") as f:
+                    for line in f:
+                        line = line.strip()
+                        if not line:
+                            continue
+                        rec = json.loads(line)
+                        rid = rec.get("id")
+                        if rid is None:
+                            continue
+                        rid = int(rid)
+                        if not _should_include(data_file, rid, shot):
+                            continue
+                        if rid in processed_ids:
+                            continue
+                        data_lines.append(rec)
+                data_lines = _apply_record_filters(
+                    data_lines, limit=limit, ids=ids,
+                )
+                total_count = len(data_lines) + len(processed_ids)
+                done_count = len(processed_ids)
 
-            # 读取需要处理的数据行
-            data_lines = []
-            total_count = 0
-            with open(data_path, encoding="utf-8") as f:
-                for i, line in enumerate(f):
-                    total_count += 1
-                    if i < line_count:  # 跳过已处理的行
-                        continue
-                    data_lines.append(json.loads(line))
+            if data_lines:
+                logger.info(
+                    f"Next id(s): {[int(r['id']) for r in data_lines[:5]]}"
+                    f"{'...' if len(data_lines) > 5 else ''} (shot={shot.value})"
+                )
 
-            # 初始化进度条（动态描述显示文件名和模型名）
-            process_bar = tqdm.tqdm(total=total_count, desc=f"{data_file} use {model_name} Process", unit="line")
-
-            if line_count:
-                process_bar.update(line_count)  # 更新已处理进度
+            process_bar = tqdm.tqdm(
+                total=total_count, desc=f"{data_file} use {model_name} Process", unit="line",
+            )
+            if done_count:
+                process_bar.update(done_count)
 
             # 动态选择处理函数（根据文件名前缀匹配question_prompt_dict）
             if data_file[0].isalpha():

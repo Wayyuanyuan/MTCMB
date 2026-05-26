@@ -1,15 +1,18 @@
-**数据集描述**：TCMeEE是面向中医文本的命名实体识别数据集。这个数据集的目的是评估模型从真实的医学文书中提取特定实体信息的能力。具体来说，对于给定的一组中医文本，任务的目标是识别并抽取出与中医相关的实体。
+**数据集描述**：TCMeEE 评估模型从临床叙事文本中识别并抽取结构化中医实体信息的能力。目标字段包括症状、体征、西医病名、中医病名、证型、病因病机、治法、方剂与药物等。
 
-**数据集来源**：医案来源于[《中医智库》网站]()  及湖南中医药大学提供的真实医案。答案是由deepseek-r1生成，并且由专业人士复核。
+**数据集来源**：[中医智库](https://zhongyigen.com/)（95%）及执业医师提交的医案（5%），共 100 例。
+
+**构建方式**：使用 DeepSeek-R1 自动处理病例并生成结构化参考答案；所有输入与输出经执业医师专家审核。
 
 **元数据**：
 
 ```
-Medical_case:医学案例。
-answer:包含"Symptoms"（症状）,"Disease Name"（西医病名）,"TCM Disease Name"（中医病名）,"TCM Pattern"（中医证型）,"Cause and Mechanism of Disease"（病因病机）,"Method of Treatment"（治法）,""Formulas"（方剂名）,""Medicinals"（药物组成）等字段的抽取
+Medical_case：临床医案文本（输入）
+answer：结构化 JSON，含 Symptoms、Disease Name、TCM Disease Name、TCM Pattern、Cause and Mechanism of Disease、Method of Treatment、Formulas、Medicinals 等字段
+source：样本溯源
 ```
 
-**评估指标**：采用Bertscore,  ROUGE, BLEU取平均的方式
+**评估指标**：BLEU、ROUGE-L 与 BERTScore 的算术平均
 
 **示例**：
 
@@ -20,4 +23,3 @@ answer:包含"Symptoms"（症状）,"Disease Name"（西医病名）,"TCM Diseas
     "answer": "{\n    \"Symptoms\": \"头晕乏力，时时喷嚏，口苦口干，纳呆食减，心烦易怒，舌苔薄白，脉弦缓\",\n    \"Disease Name\": \"反复上呼吸道感染\",\n    \"TCM Disease Name\": \"感冒\",\n    \"TCM Pattern\": \"少阳枢机不利证\",\n    \"Cause and Mechanism of Disease\": \"少阳枢机不利，肝胆气郁，卫气不行\",\n    \"Method of Treatment\": \"和解少阳，调和营卫\",\n    \"Formulas\": \"小柴胡汤合桂枝汤\",\n    \"Medicinals\": \"柴胡，半夏，黄芩，党参，炙甘草，生姜，大枣，桂枝，白芍\"\n}"
   }
 ```
-

@@ -2,6 +2,7 @@ import glob
 import json
 import os.path
 from concurrent.futures.thread import ThreadPoolExecutor
+from pathlib import Path
 
 import pandas as pd
 import tqdm
@@ -9,10 +10,24 @@ import tqdm
 from loguru import logger
 
 from evaluate.works import question_standard_dict
+from mtcmb_datasets import CANONICAL_DATA_ROOT, Purpose, load_records, shot_from_prompt_type
+
+PROJECT_ROOT = Path(__file__).resolve().parents[1]
+
+
+def _resolve_standard_root(standard_answer_root: str) -> Path:
+    root = Path(standard_answer_root)
+    if not root.is_absolute():
+        root = (PROJECT_ROOT / root).resolve()
+    return root
 
 
 def evaluate_process(
-    standard_answer_root: str, chat_answer_root: str, *args, **kwargs
+    standard_answer_root: str,
+    chat_answer_root: str,
+    *args,
+    prompt_type: int = 0,
+    **kwargs,
 ):
     """
        评估处理主函数：比较模型生成的答案与标准答案
@@ -35,13 +50,18 @@ def evaluate_process(
         output_dir = os.path.dirname(chat_answer_file)
         output_file = os.path.join(output_dir, "score.json")  # 评分结果文件路径
 
-        # 构建对应的标准答案文件路径
-        standard_answer_file = os.path.join(standard_answer_root, chat_answer_kind + '.jsonl')
-        if not os.path.isfile(standard_answer_file):
+        dataset_name = chat_answer_kind + ".jsonl"
+        resolved_standard_root = _resolve_standard_root(standard_answer_root)
+        use_loader = resolved_standard_root == CANONICAL_DATA_ROOT.resolve()
+        standard_answer_file = os.path.join(resolved_standard_root, dataset_name)
+        if not use_loader and not os.path.isfile(standard_answer_file):
             logger.error(f"Can not find standard answer file {standard_answer_file}")
             continue
 
-        logger.info(f"File({chat_answer_file}) use standard answer file({standard_answer_file})")
+        logger.info(
+            f"File({chat_answer_file}) standard from "
+            f"{'loader:' + dataset_name if use_loader else standard_answer_file}"
+        )
 
         # 根据问题类别选择评估函数
         if chat_answer_kind[0].isalpha():
@@ -61,8 +81,15 @@ def evaluate_process(
                 #         print(f"JSON decode error on line {i + 1}: {e}")
                 #         print(f"Problematic line: {line}")
                 #         break
-            with open(standard_answer_file, encoding="utf8") as f:
-                standard_answer_data = [json.loads(line) for line in f]
+            if use_loader:
+                standard_answer_data = load_records(
+                    dataset_name,
+                    purpose=Purpose.STANDARD,
+                    shot=shot_from_prompt_type(prompt_type),
+                )
+            else:
+                with open(standard_answer_file, encoding="utf8") as f:
+                    standard_answer_data = [json.loads(line) for line in f]
 
             # 检查数据量是否匹配
             if len(chat_answer_data) != len(standard_answer_data):
@@ -120,19 +147,22 @@ def evaluate_process(
     summary_path = os.path.join(chat_answer_root, "summary_score.xlsx")
     summary_score_df = pd.DataFrame(all_summary)
 
-    if os.path.exists(summary_path):
-        exists_df = pd.read_excel(summary_path)
-        if "question_name" not in exists_df.columns or "question_name" not in summary_score_df.columns:
-            raise ValueError(f"Key column 'question_name' does not exist in one of the DataFrames.")
+    if all_summary:
+        if os.path.exists(summary_path):
+            exists_df = pd.read_excel(summary_path)
+            if exists_df.empty or "question_name" not in exists_df.columns:
+                summary_score_df.to_excel(summary_path, index=False)
+            else:
+                merged_df = pd.merge(exists_df, summary_score_df, on="question_name", how='outer', suffixes=('', '_new'))
+                for col in summary_score_df.columns:
+                    if col != "question_name":
+                        merged_df[col] = merged_df[col + '_new'].combine_first(merged_df[col])
+                        if col + '_new' in merged_df.columns:
+                            merged_df.drop(columns=[col + '_new'], inplace=True)
+                merged_df.to_excel(summary_path, index=False)
+        else:
+            summary_score_df.to_excel(summary_path, index=False)
 
-        merged_df = pd.merge(exists_df, summary_score_df, on="question_name", how='outer', suffixes=('', '_new'))
-        for col in summary_score_df.columns:
-            if col != "question_name":
-                merged_df[col] = merged_df[col + '_new'].combine_first(merged_df[col])
-                if col + '_new' in merged_df.columns:
-                    merged_df.drop(columns=[col + '_new'], inplace=True)
-        merged_df.to_excel(summary_path, index=False)
+        logger.info(f"Summary score written to {summary_path}")
     else:
-        summary_score_df.to_excel(summary_path, index=False)
-
-    logger.info(f"Summary score written to {summary_path}")
+        logger.warning(f"No evaluation results for {chat_answer_root}")

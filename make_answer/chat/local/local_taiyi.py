@@ -23,7 +23,7 @@ class LocalTaiYi(ChatInvoker):
         self.__tokenizer.pad_token_id = self.__tokenizer.eod_id
         self.__tokenizer.bos_token_id = self.__tokenizer.eod_id
         self.__tokenizer.eos_token_id = self.__tokenizer.eod_id
-        self.__max_new_tokens = 512
+        self.__max_new_tokens = 2048
         self.__top_p = 0.9
         self.__temperature = 0.3
         self.__repetition_penalty = 1.1

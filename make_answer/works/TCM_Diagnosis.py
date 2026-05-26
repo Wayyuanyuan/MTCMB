@@ -1,8 +1,8 @@
 from make_answer.chat.chat_invoker import ChatInvoker
 
 
-def tcm_diagdata(prompt_type:int,data: dict, llm: ChatInvoker) -> dict:
-    zero_shot_prompt=f'''
+def tcm_diagnosis(prompt_type: int, data: dict, llm: ChatInvoker) -> dict:
+    zero_shot_prompt = f'''
     请根据以下中医中证的表现，得出疾病名称、证名、病位、病性，并完成下述表单：
     ##表单内容
     "疾病名称": ,

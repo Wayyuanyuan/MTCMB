@@ -6,10 +6,8 @@
 </center>
 
 
-![title](https://github.com/Wayyuanyuan/MTCMB/blob/main/pics/title2.png)
-
 <p align="center">
-   📃 <a href="" target="_blank">Paper</a> • 🌐 <a href="" target="_blank">Website</a>  
+   📃 <a href="https://doi.org/10.5281/zenodo.20362743" target="_blank">Zenodo</a> • 🌐 <a href="https://github.com/Wayyuanyuan/MTCMB" target="_blank">GitHub</a>  
    <br>  <a href="https://github.com/Wayyuanyuan/MTCMB/blob/main/ReadMe_cn.md">   中文</a> | <a href="https://github.com/Wayyuanyuan/MTCMB/blob/main/ReadMe.md"> English
 </p>
 
@@ -21,40 +19,43 @@
 
 ## 🌐 数据下载
 
-（1）Zip格式
+MTCMB 在 [Zenodo](https://doi.org/10.5281/zenodo.20362743)（CC-BY 4.0）与 [GitHub](https://github.com/Wayyuanyuan/MTCMB) 公开发布，包含 12 个子数据集、评估脚本与各任务说明文档。
 
-```python
-  https://github.com/Wayyuanyuan/MTCMB.git && cd data
+（1）克隆仓库
+
+```bash
+git clone https://github.com/Wayyuanyuan/MTCMB.git
+cd MTCMB/data
 ```
 
-（2）[Huggingface datasets](https://huggingface.co/datasets/Bunnybeck/MTCMB/tree/main)
+（2）[Hugging Face Datasets](https://huggingface.co/datasets/Bunnybeck/MTCMB/tree/main)
 
 ## 📍排行榜​​
 #### 🔆通用大模型
 
 | Model                | 1.TCM-ED-A | 2.TCM-ED-B | 3.TCM-FT  | 4.TCMeEE | 5.TCM-CHGD | 6.TCM-LitData | 7.TCM-MSDD | 8.TCM-Diagnosis | 9.TCM-PR | 10.TCM-FRD | 11.SE-A   | 12.SE-B |
 | -------------------- | ---------- | ---------- | --------- | -------- | ---------- | ------------- | ---------- | --------------- | -------- | ---------- | --------- | ------- |
-| gpt-4.1              | 64.67      | 75.15      | 86.62     | 52       | 55         | 64            | 35         | 49              | 35       | 49         | 70.99     | 74      |
-| gpt-4.1 Few-Shot     | 72.01      | 74.25      | 86.77     | 78       | 48         | 59            | 34.44      | 51              | 40       | 54         | 73.15     | 72.34   |
-| gpt-4.1 CoT          | 73.02      | 72.05      | 88.17     | 72       | 47         | 64            | 35.46      | 51              | 40       | 54         | 72.76     | 68.09   |
-| claude               | 59.42      | 59.58      | 85.93     | 69       | 50         | 56            | 12.75      | 39              | 31       | 36         | 58.76     | 48      |
-| claude Few-Shot      | 64.24      | 62.96      | 87.58     | 79       | 51         | 55            | 38.52      | 44              | 38       | 38         | 64.94     | 55.32   |
-| claude CoT           | 63.99      | 51.68      | 87.97     | 54       | 43         | 57            | 30.87      | 41              | 34       | 39         | 48.83     | 53.19   |
-| gemini               | 83.5       | 86.6       | 88.33     | 77       | 46         | 65            | 32.25      | 46              | 37       | 39         | 82.04     | 86      |
-| gemini Few-Shot      | 85.05      | 87.22      | 89.18     | 75       | 48         | 57            | 35.71      | 47              | 40       | 50         | 82.37     | 87.23   |
-| gemini CoT           | 85.71      | 66.69      | 87.37     | 79       | 47         | 62            | 34.95      | 47              | 38       | 50         | 77.8      | 85.11   |
-| qwen-max             | 86.92      | 90.54      | 87.43     | 51       | 50         | 68            | 30         | 49              | 36       | 44         | 77.16     | 78      |
-| qwen-max Few-Shot    | 88.14      | 90.43      | 88.10     | 80       | 50         | 65            | 40.05      | 52              | 40       | 54         | 79.11     | 82.98   |
-| qwen-max CoT         | 86.72      | 75.42      | 88.01     | 51       | 49         | **71**        | 38.01      | **53**          | 40       | 54         | 77.83     | 80.85   |
-| glm-4-plus           | 83.83      | 87.25      | 87.67     | 82       | 47         | 64            | 32.5       | 46              | 37       | 38         | 72.73     | 74      |
-| glm-4-plus Few-Shot  | 82.54      | 86.64      | 88.19     | 80       | 49         | 62            | 40.05      | 47              | 40       | 51         | 78.26     | 74.47   |
-| glm-4-plus CoT       | 82.04      | 80.53      | 88.07     | 82       | 48         | 63            | 37.24      | 34              | **41**   | 50         | 78.96     | 74.47   |
-| doubao               | **92.08**  | **94.21**  | 89.22     | 86       | 46         | 67            | 33.75      | 50              | 37       | 52         | 83.16     | **90**  |
-| doubao Few-Shot      | 91.48      | 94.04      | 89.22     | 83       | **56**     | 62            | 39.54      | 51              | 39       | **58**     | 83.18     | 87.23   |
-| doubao CoT           | 91.73      | 83.97      | **89.59** | 86       | 50         | 34            | 37.5       | 51              | 39       | 54         | 81.17     | 85.11   |
-| DeepSeek-V3          | 89.08      | 91.17      | 87.66     | **87**   | 48         | 62            | 39.25      | 50              | 39       | 41         | **85.86** | 82      |
-| DeepSeek-V3 Few-Shot | 89.64      | 90.95      | 88.30     | 83       | 52         | 61            | **41.33**  | 51              | 40       | 56         | 85.25     | 80.85   |
-| DeepSeek-V3 CoT      | 88.47      | 80.11      | 88.65     | 86       | 51         | 62            | 38.78      | 51              | 40       | 54         | 81.02     | 74.47   |
+| gpt-4.1 | 64.67 | 75.15 | 71.81 | 52 | 55 | 64 | 35 | 49 | 35 | 49 | 70.99 | 74 |
+| gpt-4.1 Few-Shot | 72.01 | 74.25 | 71.78 | 78 | 48 | 59 | 34.44 | 51 | 40 | 54 | 73.15 | 72.34 |
+| gpt-4.1 CoT | 73.02 | 72.05 | 72.05 | 72 | 47 | 64 | 35.46 | 51 | 40 | 54 | 72.76 | 68.09 |
+| claude | 59.42 | 59.58 | 71.09 | 69 | 50 | 56 | 12.75 | 39 | 31 | 36 | 58.76 | 48 |
+| claude Few-Shot | 64.24 | 62.96 | 72.1 | 79 | 51 | 55 | 38.52 | 44 | 38 | 38 | 64.94 | 55.32 |
+| claude CoT | 63.99 | 51.68 | 72.27 | 54 | 43 | 57 | 30.87 | 41 | 34 | 39 | 48.83 | 53.19 |
+| gemini | 83.5 | 86.6 | 71.21 | 77 | 46 | 65 | 32.25 | 46 | 37 | 39 | 82.04 | 86 |
+| gemini Few-Shot | 85.05 | 87.22 | 73.17 | 75 | 48 | 57 | 35.71 | 47 | 40 | 50 | 82.37 | 87.23 |
+| gemini CoT | 85.71 | 66.69 | 72.6 | 79 | 47 | 62 | 34.95 | 47 | 38 | 50 | 77.8 | 85.11 |
+| qwen-max | 86.92 | 90.54 | 72.15 | 51 | 50 | 68 | 30 | 49 | 36 | 44 | 77.16 | 78 |
+| qwen-max Few-Shot | 88.14 | 90.43 | 73.02 | 80 | 50 | 65 | 40.05 | 52 | 40 | 54 | 79.11 | 82.98 |
+| qwen-max CoT | 86.72 | 75.42 | 72.88 | 51 | 49 | **71** | 38.01 | **53** | 40 | 54 | 77.83 | 80.85 |
+| glm-4-plus | 83.83 | 87.25 | 73.03 | 82 | 47 | 64 | 32.5 | 46 | 37 | 38 | 72.73 | 74 |
+| glm-4-plus Few-Shot | 82.54 | 86.64 | 73.68 | 80 | 49 | 62 | 40.05 | 47 | 40 | 51 | 78.26 | 74.47 |
+| glm-4-plus CoT | 82.04 | 80.53 | 72.35 | 82 | 48 | 63 | 37.24 | 34 | **41** | 50 | 78.96 | 74.47 |
+| doubao | **92.08** | **94.21** | 73.77 | 86 | 46 | 67 | 33.75 | 50 | 37 | 52 | 83.16 | **90** |
+| doubao Few-Shot | 91.48 | 94.04 | 73.91 | 83 | **56** | 62 | 39.54 | 51 | 39 | **58** | 83.18 | 87.23 |
+| doubao CoT | 91.73 | 83.97 | 75.04 | 86 | 50 | 34 | 37.5 | 51 | 39 | 54 | 81.17 | 85.11 |
+| DeepSeek-V3 | 89.08 | 91.17 | 71.92 | **87** | 48 | 62 | 39.25 | 50 | 39 | 41 | **85.86** | 82 |
+| DeepSeek-V3 Few-Shot | 89.64 | 90.95 | 73.1 | 83 | 52 | 61 | **41.33** | 51 | 40 | 56 | 85.25 | 80.85 |
+| DeepSeek-V3 CoT | 88.47 | 80.11 | 73.3 | 86 | 51 | 62 | 38.78 | 51 | 40 | 54 | 81.02 | 74.47 |
 
 
 
@@ -66,12 +67,12 @@
 
 | Model                | 1.TCM-ED-A | 2.TCM-ED-B | 3.TCM-FT  | 4.TCMeEE | 5.TCM-CHGD | 6.TCM-LitData | 7.TCM-MSDD | 8.TCM-Diagnosis | 9.TCM-PR | 10.TCM-FRD | 11.SE-A   | 12.SE-B   |
 | -------------------- | ---------- | ---------- | --------- | -------- | ---------- | ------------- | ---------- | --------------- | -------- | ---------- | --------- | --------- |
-| o4-mini              | 70.92      | 74.42      | 86.88     | 78       | 45         | 61            | 17.25      | 51              | 26       | 43         | 55.3      | 54        |
-| o4-mini Few-Shot     | 69.92      | 74.34      | 86.21     | 79       | 47         | **64**        | 28.06      | **52**          | 38       | 52         | 58.55     | 70.21     |
-| qwen3-235B           | 86.83      | 91.54      | **88.29** | 53       | **58**     | 60            | 42         | 49              | 35       | 46         | 71.36     | 86        |
-| qwen3-235B Few-Shot  | 87.13      | 89.58      | 87.51     | 79       | 50         | 60            | **50**     | 50              | 40       | **54**     | 70.32     | 80.85     |
-| DeepSeek-r1          | 89.08      | 91.17      | 87.66     | **87**   | 48         | 62            | 39.25      | 50              | 39       | 41         | **85.86** | 82        |
-| DeepSeek-r1 Few-Shot | **92.40**  | **92.33**  | 84.21     | 83       | 52         | 61            | 40.05      | 49              | **41**   | 52         | 86.26     | **89.36** |
+| o4-mini | 70.92 | 74.42 | 68.82 | 78 | 45 | 61 | 17.25 | 51 | 26 | 43 | 55.3 | 54 |
+| o4-mini Few-Shot | 69.92 | 74.34 | 69.32 | 79 | 47 | **64** | 28.06 | **52** | 38 | 52 | 58.55 | 70.21 |
+| qwen3-235B | 86.83 | 91.54 | 71.16 | 53 | **58** | 60 | 42 | 49 | 35 | 46 | 71.36 | 86 |
+| qwen3-235B Few-Shot | 87.13 | 89.58 | 72.58 | 79 | 50 | 60 | **50** | 50 | 40 | **54** | 70.32 | 80.85 |
+| DeepSeek-r1 | 89.08 | 91.17 | 73.08 | **87** | 48 | 62 | 39.25 | 50 | 39 | 41 | **85.86** | 82 |
+| DeepSeek-r1 Few-Shot | **92.40** | **92.33** | 73.82 | 83 | 52 | 61 | 40.05 | 49 | **41** | 52 | 86.26 | **89.36** |
 
 
 
@@ -82,21 +83,21 @@
 
 | Model            | 1.TCM-ED-A | 2.TCM-ED-B | 3.TCM-FT  | 4.TCM-eEE | 5.TCM-CHGD | 6.TCM-LitData | 7.TCM-MSDD | 8.TCM-Diagnosis | 9.TCM-PR | 10.TCM-FRD | 11.SE-A   | 12.SE-B |
 | ---------------- | ---------- | ---------- | --------- | --------- | ---------- | ------------- | ---------- | --------------- | -------- | ---------- | --------- | ------- |
-| WINGPT2-14B-Chat | 40.25      | 40.98      | 84.42     | 57        | 40         | 44            | 17         | 45              | 22       | 35         | 43.2      | 46      |
-| WINGPT2-14B-Chat Few-Shot         | 41         | 44.9       | 85.13     | 69        | 44         | 38            | 23         | 48              | 21       | **43**     | 39.38     | 44      |
-| WINGPT2-14B-Chat CoT              | 42.08      | 41.88      | 84.66     | 52        | 42         | 36            | 16.75      | 47              | 19       | 30         | 43.1      | 32      |
-| TaiYi-LLM        | 39.92      | 47.71      | 82.82     | 49        | 29         | **61**        | 13.5       | 49              | 11       | 30         | 24.07     | 28      |
-| TaiYi-LLM Few-Shot         | 39.67      | 42.94      | 80.18     | 55        | 25         | 43            | 35.5       | 48              | 19       | 29         | 28.13     | 40      |
-| TaiYi-LLM CoT              | 39.17      | 39.54      | 78.83     | 32        | 32         | 47            | 31.75      | 35              | 10       | 29         | 25.73     | 30      |
-| DISC-MedLLM      | 31.33      | 32.42      | 80.34     | 45        | 34         | 19            | 3          | 44              | 19       | 26         | 35        | 0       |
-| DISC-MedLLM Few-Shot         | 27.17      | 29.31      | 82.88     | 31        | 28         | 22            | 1.5        | 38              | 17       | 32         | 37.42     | 2       |
-| DISC-MedLLM CoT              | 26.58      | 31.42      | 83.45     | 24        | 23         | 24            | 4          | 37              | 7        | 25         | 42.52     | 0       |
-| HuatuoGPT-o1-72b | 75.17      | **82.27**  | 86.32     | 82        | 45         | 40            | 20.25      | 45              | 24       | **45**     | 51.3      | 70      |
-| HuatuoGPT-o1-72b Few-Shot         | 73         | 81.13      | 86.91     | 80        | **48**     | 44            | 34.25      | 41              | 32       | 34         | 52.2      | 68      |
-| HuatuoGPT-o1-72b CoT              | 72         | 79.13      | 86.86     | 82        | **48**     | 43            | 30         | 42              | 26       | 35         | 58.65     | 70      |
-| Baichuan-14b-M1  | 79.83      | 82.02      | **87.49** | 82        | 46         | **63**        | 35.5       | 46              | 33       | 38         | 70.36     | 66      |
-| Baichuan-14b-M1 Few-Shot         | 28.5       | 80.88      | 87.31     | 80        | 42         | 57            | **46.75**  | **51**          | **38**   | 32         | 73.36     | **72**  |
-| Baichuan-14b-M1 CoT              | **85.08**  | 55.81      | 87.07     | **84**    | 44         | 34            | 36.5       | **51**          | 37       | 20         | **76.09** | 68      |
+| WINGPT2-14B-Chat | 40.25 | 40.98 | 68.39 | 57 | 40 | 44 | 17 | 45 | 22 | 35 | 43.2 | 46 |
+| WINGPT2-14B-Chat Few-Shot | 41 | 44.9 | 68.6 | 69 | 44 | 38 | 23 | 48 | 21 | **43** | 39.38 | 44 |
+| WINGPT2-14B-Chat CoT | 42.08 | 41.88 | 67.99 | 52 | 42 | 36 | 16.75 | 47 | 19 | 30 | 43.1 | 32 |
+| TaiYi-LLM | 39.92 | 47.71 | 66.87 | 49 | 29 | **61** | 13.5 | 49 | 11 | 30 | 24.07 | 28 |
+| TaiYi-LLM Few-Shot | 39.67 | 42.94 | 54.8 | 55 | 25 | 43 | 35.5 | 48 | 19 | 29 | 28.13 | 40 |
+| TaiYi-LLM CoT | 39.17 | 39.54 | 62.57 | 32 | 32 | 47 | 31.75 | 35 | 10 | 29 | 25.73 | 30 |
+| DISC-MedLLM | 31.33 | 32.42 | 65.93 | 45 | 34 | 19 | 3 | 44 | 19 | 26 | 35 | 0 |
+| DISC-MedLLM Few-Shot | 27.17 | 29.31 | 58.44 | 31 | 28 | 22 | 1.5 | 38 | 17 | 32 | 37.42 | 2 |
+| DISC-MedLLM CoT | 26.58 | 31.42 | 66.61 | 24 | 23 | 24 | 4 | 37 | 7 | 25 | 42.52 | 0 |
+| HuatuoGPT-o1-72b | 75.17 | **82.27** | 71.3 | 82 | 45 | 40 | 20.25 | 45 | 24 | **45** | 51.3 | 70 |
+| HuatuoGPT-o1-72b Few-Shot | 73 | 81.13 | 72.26 | 80 | **48** | 44 | 34.25 | 41 | 32 | 34 | 52.2 | 68 |
+| HuatuoGPT-o1-72b CoT | 72 | 79.13 | 70.97 | 82 | **48** | 43 | 30 | 42 | 26 | 35 | 58.65 | 70 |
+| Baichuan-14b-M1 | 79.83 | 82.02 | 72.47 | 82 | 46 | **63** | 35.5 | 46 | 33 | 38 | 70.36 | 66 |
+| Baichuan-14b-M1 Few-Shot | 28.5 | 80.88 | 73.42 | 80 | 42 | 57 | **46.75** | **51** | **38** | 32 | 73.36 | **72** |
+| Baichuan-14b-M1 CoT | **85.08** | 55.81 | 71.9 | **84** | 44 | 34 | 36.5 | **51** | 37 | 20 | **76.09** | 68 |
 
 ## 😊数据集描述
 
@@ -104,9 +105,9 @@
 
 数据集：**5**个维度，**12**个数据集
 
-语言理解、诊断、方剂推荐、安全评价**4个维度**的数据量分布如下图所示
+五个评估维度及 12 个子数据集的数据量分布如下图所示
 
-![pie-nest](https://github.com/Wayyuanyuan/MTCMB/blob/main/pics/line-simple-ch.png)
+![MTCMB dataset distribution](https://github.com/Wayyuanyuan/MTCMB/blob/main/MTCMB_Dense_Aesthetic.png)
 
 🥸 **知识问答**维度包含三个数据集，分别是TCM-ED-A（1200）、TCM-ED-B（4800）、TCM-FT（100）
 
@@ -130,20 +131,30 @@
 
 | 维度         | 数据集名称    | 数量  | 任务描述                                               | 数据来源                                                     | 构建方式                                      | 评估方法                           |
 | ------------ | ------------- | ----- | ------------------------------------------------------ | ------------------------------------------------------------ | --------------------------------------------- | ---------------------------------- |
-| 中医知识问答 | [TCM-ED-A](https://github.com/Wayyuanyuan/MTCMB/blob/main/dataset_info/TCM-ED-A.md)      | 1,200 | 选择题                                             | 中医中级主治医师考试的12个学科                               | 每个学科随机抽取100道题目                     | 准确率                             |
-|              | [TCM-ED-B](https://github.com/Wayyuanyuan/MTCMB/blob/main/dataset_info/TCM-ED-B.md)     | 4800  | 选择题                                             | 执业医师题库                                                 | 8份完整的执业医师试卷                         | 准确率                             |
-|              | [TCM-FT](https://github.com/Wayyuanyuan/MTCMB/blob/main/dataset_info/TCM-FT.md)       | 100   | 问答题                                                 | 《中医学问答题库》胡熙明主编                                 | 从题库中随机抽取100道问答题，并由专业人员审核 | BertScore                          |
-| 中医语言理解 | [TCMeEE](https://github.com/Wayyuanyuan/MTCMB/blob/main/dataset_info/TCMeEE.md)        | 100   | 根据医案识别并抽取与中医相关的实体，生成结构化病历。   | 医案来源于[《中医智库》](https://zhongyigen.com/)网站及湖南中医药大学提供的真实医案 | 使用deepseek-r1模型生成答案后，由专业人员复核 | BERTScore、ROUGE 和 BLEU三者取平均 |
-|              | [TCM-CHGD](https://github.com/Wayyuanyuan/MTCMB/blob/main/dataset_info/TCM-CHGD.md)      | 100   | 根据医患对话生成医案。                                 | 调用deepseek r1基于真实医案生成医患对话                      | 100份医案逆向生成医患对话                     | BERTScore、ROUGE 和 BLEU三者取平均 |
+| 中医知识问答 | [TCM-ED-A](https://github.com/Wayyuanyuan/MTCMB/blob/main/dataset_info/TCM-ED-A.md)      | 1,200 | 12 学科五选一选择题（A–E）                           | 国家中医中级主治医师考试官方题库                             | 12 临床学科各分层抽样 100 题；三名执业医师专家审核 | 准确率                             |
+|              | [TCM-ED-B](https://github.com/Wayyuanyuan/MTCMB/blob/main/dataset_info/TCM-ED-B.md)     | 4800  | 执业医师全真模拟选择题                               | 国家中医执业医师资格考试官方题库                             | 8 套完整模拟卷（每套 600 题）随机抽样           | 准确率                             |
+|              | [TCM-FT](https://github.com/Wayyuanyuan/MTCMB/blob/main/dataset_info/TCM-FT.md)       | 100   | 开放式问答题                                             | 《中医学问答题库》（胡熙明主编）                             | 随机抽样后经 DeepSeek-R1 语义改写并提取要点（`points`）；专家交叉验证 | BERTScore（要点对齐）              |
+| 中医语言理解 | [TCMeEE](https://github.com/Wayyuanyuan/MTCMB/blob/main/dataset_info/TCMeEE.md)        | 100   | 根据医案识别并抽取与中医相关的实体，生成结构化病历。   | [中医智库](https://zhongyigen.com/)（95%）及执业医师提交医案（5%） | DeepSeek-R1 自动生成结构化参考答案；专家复核 | BLEU、ROUGE、BERTScore 取平均      |
+|              | [TCM-CHGD](https://github.com/Wayyuanyuan/MTCMB/blob/main/dataset_info/TCM-CHGD.md)      | 100   | 根据医患对话生成结构化病历。                           | 国家中医药管理局认证中心《中医执业助理/执业医师实践技能考试案例分析题库》 | 基于官方病案摘要，DeepSeek-R1 逆向生成模拟问诊对话；专家审核 | BLEU、ROUGE、BERTScore 取平均      |
 |              | [TCM-LitData](https://github.com/Wayyuanyuan/MTCMB/blob/main/dataset_info/TCM-LitData.md)   | 100   | 根据文献内容回答问题。                                 | [阿里云天池实验室的中医文献问题生成数据集](https://tianchi.aliyun.com/dataset/86895) | 从数据集随机抽取100道题目，并且由专业人员复核 | ROUGE 和 BLEU二者取平均            |
-| 中医诊断     | [TCM-MSDD](https://github.com/Wayyuanyuan/MTCMB/blob/main/dataset_info/TCM-MSDD.md)      | 100   | 从临床信息推断对应的证型和疾病名称。                   | [阿里云天池实验室CCL25-Eval任务9数据集子任务1](https://github.com/Wayyuanyuan/MTCMB/blob/main/dataset_info/TCM-MSDD)             | 随机抽取100道并且由专业人员复核               | CCL25-Eval 任务9的task1_score      |
-|              | [TCM-Diagnosis](https://github.com/Wayyuanyuan/MTCMB/blob/main/dataset_info/TCM-Diagnosis.md) | 200   | 根据症状表现给出疾病名称、证名、病位、病性。           | 湖南中医药大学提供的真实内外妇儿证型数据集                   | 按照内外妇儿四个科目每科抽取50例              | BERTScore、ROUGE 和 BLEU三者取平均 |
-| 方剂推荐     | [TCM-PR](https://github.com/Wayyuanyuan/MTCMB/blob/main/dataset_info/TCM-PR.md)        | 100   | 根据临床信息推荐合适的中药处方。                       | [阿里云天池实验室CCL25-Eval任务9数据集子任务2]()             | 从数据集随机抽取100道题目，并且由专业人员复核 | CCL25-Eval 任务9的task2_score      |
-|              | [TCM-FRD](https://github.com/Wayyuanyuan/MTCMB/blob/main/dataset_info/TCM-FRD.md)       | 200   | 根据证的表现给出治法、方剂名、药物组成（不包含剂量）。 | 湖南中医药大学提供的真实内外妇儿证型数据集                   | 内外妇儿共抽取200例                           | BERTScore、ROUGE 和 BLEU三者取平均 |
-| 中医安全评价 | [SE-A](https://github.com/Wayyuanyuan/MTCMB/blob/main/dataset_info/TCM-SAFE1%262.md)     | 50    | 填空题                                                 | 湖南中医药大学提供的安全性问题数据集                         | 常见中药及针灸禁忌填空题（50题）              | 大模型评分                         |
-|              | [SE-B](https://github.com/Wayyuanyuan/MTCMB/blob/main/dataset_info/TCM-SAFE1%262.md)     | 50    | 选择题                                                 | 湖南中医药大学提供的安全性问题数据集                         | 常见中药及针灸禁忌选择题（50题）              | 准确率                             |
+| 中医诊断     | [TCM-MSDD](https://github.com/Wayyuanyuan/MTCMB/blob/main/dataset_info/TCM-MSDD.md)      | 100   | 多标签证型与疾病分类。                                 | [CCL25-Eval 任务 9 子任务 1](https://tianchi.aliyun.com/competition/entrance/532301) | 保留原始标注并经专家复核                         | 准确率（多标签集合匹配）           |
+|              | [TCM-Diagnosis](https://github.com/Wayyuanyuan/MTCMB/blob/main/dataset_info/TCM-Diagnosis.md) | 200   | 根据症状表现给出疾病名称、证名、病位、病性。           | 国家“十三五”规划教材（中医内/外/妇/儿科学，各 50 例）        | 术语规范化临床表现作输入；执业医师标注结构化参考答案 | BLEU、ROUGE、BERTScore 取平均      |
+| 方剂推荐     | [TCM-PR](https://github.com/Wayyuanyuan/MTCMB/blob/main/dataset_info/TCM-PR.md)        | 100   | 根据临床信息推荐中药方剂（药物集合匹配）。             | [CCL25-Eval 任务 9 子任务 2](https://tianchi.aliyun.com/competition/entrance/532301) | 保留原始标注；临床专家修订病案与参考答案 | Jaccard、Precision、Recall、F1、Size Agreement 及综合分 |
+|              | [TCM-FRD](https://github.com/Wayyuanyuan/MTCMB/blob/main/dataset_info/TCM-FRD.md)       | 200   | 根据证候表现给出治法、方剂名与药物组成。               | 国家“十三五”规划教材（与 TCM-Diagnosis 并行构建）            | 术语规范化临床表现作输入；执业医师标注           | BLEU、ROUGE、BERTScore 取平均      |
+| 中医安全评价 | [TCM-SE-A](https://github.com/Wayyuanyuan/MTCMB/blob/main/dataset_info/TCM-SAFE1%262.md) | 50    | 填空题（毒性、配伍禁忌、妊娠禁忌等）                   | 《中华人民共和国药典》（2020 年版）                          | DeepSeek-R1 合成临床情境填空题；专家审核         | GLM-4-Air-250414 模型评分          |
+|              | [TCM-SE-B](https://github.com/Wayyuanyuan/MTCMB/blob/main/dataset_info/TCM-SAFE1%262.md) | 50    | 选择题（用药与针灸安全）                               | 《中华人民共和国药典》（2020 年版）                          | 基于同一安全记录由 DeepSeek-R1 生成选择题；专家审核 | 准确率                             |
 
+#### 目录结构
 
+论文 Data Record 中描述的三类目录与本仓库对应关系如下：
+
+| 论文目录 | 说明 | 本仓库实现 |
+| -------- | ---- | ---------- |
+| `data/` | 零样本评测集（`answer` 为空） | `data/*.jsonl` + `mtcmb_datasets.load_records(purpose=benchmark, shot=zero)` |
+| `data_few_shot/` | 少样本评测集（去掉提示词中已用作示例的样本） | 同上，`shot=few` 自动排除示例 id |
+| `dataset_info/` | 各子集元数据与指标说明 | `dataset_info/*.md` |
+
+评测时标准答案与题目共用 `data/` 目录，通过 `purpose=standard` 加载完整标注，无需维护多套物理副本。详见 [`dataset_info/数据记录.md`](dataset_info/数据记录.md)。
 
 ## 🔆如何提交和评估
 
@@ -282,7 +293,7 @@ python main.py \
 
 
 
-我们的评估基准包括11个数据集，每个数据集包含若干个题目，这些题目的answer字段为空。一个简短的示例如下：
+我们的评估基准包括 **12** 个子数据集。零样本评测时，模型输入中 `answer` 字段留空（或由 `mtcmb_datasets.load_records` 自动清空）；标准答案保存在同一 `data/` 目录中供评测使用。一个简短的示例如下：
 
 ```
 {"id":1,"question": "4.阴中求阳的治法适用于","options": ["A.阳盛","B.阴阳两虚","C.阴虚","D.阳虚","E.阴盛"],"answer": ""   }
@@ -324,10 +335,10 @@ python main.py \
 │   └── mid.jsonl
 ├── TCM-FRD
 │   └── mid.jsonl
-├── SE-A
+├── TCM-SE-A
 │   └── mid.jsonl
-├── SE-B
-   └── mid.jsonl
+└── TCM-SE-B
+    └── mid.jsonl
 
 ```
 
