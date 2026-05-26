@@ -115,7 +115,7 @@ Dataset: **5** Dimensions, **12** Datasets
 
 The following figure shows the data volume distribution in four dimensions: language understanding, diagnosis, prescription recommendation, and safety assessment:
 
-![pie-nest](https://github.com/Wayyuanyuan/MTCMB/blob/main/pics/line-simple-en.png)
+![pie-nest]((https://github.com/Wayyuanyuan/MTCMB/blob/main/pics/Figure_1.png))
 
 🥸 **Knowledge Question Answering Dimension** contains three data sets, namely TCM-ED-A (1200), TCM-ED-B (4800), TCM-FT (100)
 
