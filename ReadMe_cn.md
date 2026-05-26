@@ -107,7 +107,7 @@ cd MTCMB/data
 
 五个评估维度及 12 个子数据集的数据量分布如下图所示
 
-![MTCMB dataset distribution](https://github.com/Wayyuanyuan/MTCMB/blob/main/MTCMB_Dense_Aesthetic.png)
+![MTCMB dataset distribution](https://github.com/Wayyuanyuan/MTCMB/blob/main/pics/Figure_1.png)
 
 🥸 **知识问答**维度包含三个数据集，分别是TCM-ED-A（1200）、TCM-ED-B（4800）、TCM-FT（100）
 
