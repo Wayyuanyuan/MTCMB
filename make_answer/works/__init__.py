@@ -11,11 +11,11 @@ from make_answer.works.TCM_MSDD import tcm_msdd
 from make_answer.works.TCM_Diagnosis import tcm_diagnosis
 from make_answer.works.TCM_PR import tcm_pr
 from make_answer.works.TCM_FRD import tcm_frd
-from make_answer.works.drug_1 import drug_1
-from make_answer.works.drug_2 import drug_2
+from make_answer.works.TCM_SE_A import tcm_se_a
+from make_answer.works.TCM_SE_B import tcm_se_b
 
 
 question_prompt_dict: dict[str, Callable[[dict, ChatInvoker], dict]] = {
     "1": tcm_ed_a, "2": tcm_ed_b, "3": tcm_ft,"4": tcmeee, "5": tcm_chgd, "6": tcm_litdata,
-    "7": tcm_msdd, "8": tcm_diagnosis, "9": tcm_pr, "10": tcm_frd, "11": drug_1, "12": drug_2
+    "7": tcm_msdd, "8": tcm_diagnosis, "9": tcm_pr, "10": tcm_frd, "11": tcm_se_a, "12": tcm_se_b
 }

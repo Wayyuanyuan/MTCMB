@@ -38,7 +38,7 @@
 
 #### 
 
-| Model                | 1.TCM-ED-A | 2.TCM-ED-B | 3.TCM-FT  | 4.TCMeEE | 5.TCM-CHGD | 6.TCM-LitData | 7.TCM-MSDD | 8.TCM-Diagnosis | 9.TCM-PR | 10.TCM-FRD | 11.SE-A   | 12.SE-B |
+| Model                | 1.TCM-ED-A | 2.TCM-ED-B | 3.TCM-FT  | 4.TCMeEE | 5.TCM-CHGD | 6.TCM-LitData | 7.TCM-MSDD | 8.TCM-Diagnosis | 9.TCM-PR | 10.TCM-FRD | 11.TCM-SE-A | 12.TCM-SE-B |
 | -------------------- | ---------- | ---------- | --------- | -------- | ---------- | ------------- | ---------- | --------------- | -------- | ---------- | --------- | ------- |
 | gpt-4.1              | 64.67      | 75.15      | 86.62     | 52       | 55         | 64            | 35         | 49              | 35       | 49         | 70.99     | 74      |
 | gpt-4.1 Few-Shot     | 72.01      | 74.25      | 86.77     | 78       | 48         | 59            | 34.44      | 51              | 40       | 54         | 73.15     | 72.34   |
@@ -69,7 +69,7 @@
 
 #### 
 
-| Model                | 1.TCM-ED-A | 2.TCM-ED-B | 3.TCM-FT  | 4.TCMeEE | 5.TCM-CHGD | 6.TCM-LitData | 7.TCM-MSDD | 8.TCM-Diagnosis | 9.TCM-PR | 10.TCM-FRD | 11.SE-A   | 12.SE-B   |
+| Model                | 1.TCM-ED-A | 2.TCM-ED-B | 3.TCM-FT  | 4.TCMeEE | 5.TCM-CHGD | 6.TCM-LitData | 7.TCM-MSDD | 8.TCM-Diagnosis | 9.TCM-PR | 10.TCM-FRD | 11.TCM-SE-A | 12.TCM-SE-B |
 | -------------------- | ---------- | ---------- | --------- | -------- | ---------- | ------------- | ---------- | --------------- | -------- | ---------- | --------- | --------- |
 | o4-mini              | 70.92      | 74.42      | 86.88     | 78       | 45         | 61            | 17.25      | 51              | 26       | 43         | 55.3      | 54        |
 | o4-mini Few-Shot     | 69.92      | 74.34      | 86.21     | 79       | 47         | **64**        | 28.06      | **52**          | 38       | 52         | 58.55     | 70.21     |
@@ -88,7 +88,7 @@
 
 #### 
 
-| Model            | 1.TCM-ED-A | 2.TCM-ED-B | 3.TCM-FT  | 4.TCM-eEE | 5.TCM-CHGD | 6.TCM-LitData | 7.TCM-MSDD | 8.TCM-Diagnosis | 9.TCM-PR | 10.TCM-FRD | 11.SE-A   | 12.SE-B |
+| Model            | 1.TCM-ED-A | 2.TCM-ED-B | 3.TCM-FT  | 4.TCMeEE | 5.TCM-CHGD | 6.TCM-LitData | 7.TCM-MSDD | 8.TCM-Diagnosis | 9.TCM-PR | 10.TCM-FRD | 11.TCM-SE-A | 12.TCM-SE-B |
 | ---------------- | ---------- | ---------- | --------- | --------- | ---------- | ------------- | ---------- | --------------- | -------- | ---------- | --------- | ------- |
 | WINGPT2-14B-Chat | 40.25      | 40.98      | 84.42     | 57        | 40         | 44            | 17         | 45              | 22       | 35         | 43.2      | 46      |
 | WINGPT2-14B-Chat Few-Shot         | 41         | 44.9       | 85.13     | 69        | 44         | 38            | 23         | 48              | 21       | **43**     | 39.38     | 44      |
@@ -113,21 +113,21 @@
 
 Dataset: **5** Dimensions, **12** Datasets
 
-The following figure shows the data volume distribution in four dimensions: language understanding, diagnosis, prescription recommendation, and safety assessment:
+The following figure shows the data volume distribution across five dimensions: knowledge question answering, language understanding, diagnostic reasoning, prescription recommendation, and safety assessment:
 
 ![pie-nest](https://github.com/Wayyuanyuan/MTCMB/blob/main/pics/Figure_1.png)
 
 🥸 **Knowledge Question Answering Dimension** contains three data sets, namely TCM-ED-A (1200), TCM-ED-B (4800), TCM-FT (100)
 
-- **Knowledge Question and Answer**: Test the LLM's understanding and application of core knowledge in basic theories of TCM, formula science, acupuncture, and diagnostics through questions from the Intermediate Attending Physician and Licensed Physician Examinations, as well as standard essay-style questions.
+- **Knowledge Question Answering**: Test the LLM's understanding and application of core knowledge in basic theories of TCM, formula science, acupuncture, and diagnostics through questions from the Intermediate Attending Physician and Licensed Physician Examinations, as well as standard essay-style questions.
 
 - **Language Understanding**: This dimension evaluates the performance of the LLM in TCM text understanding and information extraction through entity extraction in medical records, generating structured medical records from doctor-patient conversations, and answering questions based on literature content.
 
-- **Diagnosis**: This dimension examines the ability of the LLM to conduct syndrome differentiation analysis based on the patient's clinical information (such as symptoms, signs, tongue and pulse, etc.) and accurately determine the name of the disease and syndrome type.
+- **Diagnostic Reasoning**: This dimension examines the ability of the LLM to conduct syndrome differentiation analysis based on the patient's clinical information (such as symptoms, signs, tongue and pulse, etc.) and accurately determine the name of the disease and syndrome type.
 
 - **Prescription Recommendation**: This dimension assesses LLM's ability to recommend appropriate prescriptions based on the description of the disease and the characteristics of the syndrome. It specifically covers the understanding of the composition of the prescription, the rules of compatibility, and the correspondence between symptoms and diseases.
 
-- **Safety evaluation**: This dimension evaluates the ability of the LLM to identify safety risks involved in TCM practice through fill-in-the-blank questions and multiple-choice questions.
+- **Safety Assessment**: This dimension evaluates the ability of the LLM to identify safety risks involved in TCM practice through fill-in-the-blank questions and multiple-choice questions.
 
 ####  Detailed Information
 
@@ -141,12 +141,12 @@ The following figure shows the data volume distribution in four dimensions: lang
 | Language Understanding        | [TCMeEE](https://github.com/Wayyuanyuan/MTCMB/blob/main/dataset_info/TCMeEE.md) | 100      | Based on medical records, entities related to Chinese medicine are identified and extracted to generate structured medical records. | The medical cases are from the website [《TCM Think Tank》](https://zhongyigen.com/) and real medical cases provided by Hunan University of Chinese Medicine | Use deepseek-r1 to generate answers, and then professionals review the generated answers | The average of BERTScore, ROUGE and BLEU is taken |
 |                               | [TCM-CHGD](https://github.com/Wayyuanyuan/MTCMB/blob/main/dataset_info/TCM-CHGD.md) | 100      | Generate medical cases based on doctor-patient dialogues.    | Call deepseek r1 to generate doctor-patient dialogues based on real medical cases | 100 medical cases are used to reversely generate doctor-patient dialogues | The average of BERTScore, ROUGE and BLEU is taken |
 |                               | [TCM-LitData](https://github.com/Wayyuanyuan/MTCMB/blob/main/dataset_info/TCM-LitData.md) | 100      | Answer questions based on the content of the literature.     | [Dataset for TCM Literature Question Generation from Alibaba Cloud Tianchi Lab](https://tianchi.aliyun.com/dataset/86895) | 100 questions are randomly selected from the dataset and reviewed by professionals | Average of ROUGE and BLEU                         |
-| Diagnosis                     | [TCM-MSDD](https://github.com/Wayyuanyuan/MTCMB/blob/main/dataset_info/TCM-MSDD.md) | 100      | Infer the corresponding syndrome type and disease name from clinical information. | [Alibaba Cloud Tianchi Lab CCL25-Eval Task 9 Dataset Subtask 1](https://tianchi.aliyun.com/competition/entrance/532301) | Randomly select 100 questions and have them reviewed by professionals | CCL25-Eval Task 9 task1_score                     |
+| Diagnostic Reasoning          | [TCM-MSDD](https://github.com/Wayyuanyuan/MTCMB/blob/main/dataset_info/TCM-MSDD.md) | 100      | Infer the corresponding syndrome type and disease name from clinical information. | [Alibaba Cloud Tianchi Lab CCL25-Eval Task 9 Dataset Subtask 1](https://tianchi.aliyun.com/competition/entrance/532301) | Randomly select 100 questions and have them reviewed by professionals | CCL25-Eval Task 9 task1_score                     |
 |                               | [TCM-Diagnosis](https://github.com/Wayyuanyuan/MTCMB/blob/main/dataset_info/TCM-Diagnosis.md) | 200      | Give the disease name, syndrome name, location, and nature of the disease based on the symptoms. | Real internal medicine, internal medicine, gynecology and pediatrics syndrome data set provided by Hunan University of Chinese Medicine | 50 cases are selected from each of the four subjects of internal medicine, internal medicine, gynecology and pediatrics | Average of BERTScore, ROUGE and BLEU              |
-| Prescription recommendation   | [TCM-PR](https://github.com/Wayyuanyuan/MTCMB/blob/main/dataset_info/TCM-PR.md) | 100      | Recommend appropriate Chinese medicine prescriptions based on clinical information. | [Alibaba Cloud Tianchi Laboratory CCL25-Eval Task 9 Dataset Subtask 2](https://tianchi.aliyun.com/competition/entrance/532301) | Randomly select 100 questions from the dataset and review them by professionals | CCL25-Eval Task 9 task2_score                     |
+| Prescription Recommendation   | [TCM-PR](https://github.com/Wayyuanyuan/MTCMB/blob/main/dataset_info/TCM-PR.md) | 100      | Recommend appropriate Chinese medicine prescriptions based on clinical information. | [Alibaba Cloud Tianchi Laboratory CCL25-Eval Task 9 Dataset Subtask 2](https://tianchi.aliyun.com/competition/entrance/532301) | Randomly select 100 questions from the dataset and review them by professionals | CCL25-Eval Task 9 task2_score                     |
 |                               | [TCM-FRD](https://github.com/Wayyuanyuan/MTCMB/blob/main/dataset_info/TCM-FRD.md) | 200      | Give treatment methods, prescription names, and drug composition (excluding dosage) based on the manifestation of the syndrome. | Real internal medicine, internal medicine, gynecology and pediatric syndrome data set provided by Hunan University of Chinese Medicine | 200 cases of internal medicine, internal medicine, gynecology and pediatrics were selected | Average of BERTScore, ROUGE and BLEU              |
-| Safety evaluation             | [SE-A](https://github.com/Wayyuanyuan/MTCMB/blob/main/dataset_info/TCM-SAFE1%262.md) | 50       | Fill-in-the-blank questions                                  | Safety problem data set provided by Hunan University of Chinese Medicine | Common Chinese medicine and acupuncture contraindications fill-in-the-blank questions (50 questions) | LLM scoring                                       |
-|                               | [SE-B](https://github.com/Wayyuanyuan/MTCMB/blob/main/dataset_info/TCM-SAFE1%262.md) | 50       | Multiple-choice questions                                     | Safety problem data set provided by Hunan University of Chinese Medicine | Common contraindications of traditional Chinese medicine and acupuncture (multiple-choice questions) (50 questions) | Accuracy                                          |
+| Safety Assessment             | [TCM-SE-A](https://github.com/Wayyuanyuan/MTCMB/blob/main/dataset_info/TCM-SE-A.md) | 50       | Fill-in-the-blank questions                                  | Safety problem data set provided by Hunan University of Chinese Medicine | Common Chinese medicine and acupuncture contraindications fill-in-the-blank questions (50 questions) | LLM scoring                                       |
+|                               | [TCM-SE-B](https://github.com/Wayyuanyuan/MTCMB/blob/main/dataset_info/TCM-SE-B.md) | 50       | Multiple-choice questions                                     | Safety problem data set provided by Hunan University of Chinese Medicine | Common contraindications of traditional Chinese medicine and acupuncture (multiple-choice questions) (50 questions) | Accuracy                                          |
 
 
 
@@ -325,10 +325,10 @@ Primary Directory (Model Name)
 │   └── mid.jsonl
 ├── TCM-FRD
 │   └── mid.jsonl
-├── SE-A
+├── TCM-SE-A
 │   └── mid.jsonl
-├── SE-B
-   └── mid.jsonl
+└── TCM-SE-B
+    └── mid.jsonl
 ```
 
 Please submit your files in a compressed package, such as **gemini-1.5-pro.zip**, and send it to **weiyy53@mail2.sysu.edu.cn**. After the evaluation process is complete, the results will be published on **GitHub**.  

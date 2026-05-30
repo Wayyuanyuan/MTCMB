@@ -33,7 +33,7 @@ cd MTCMB/data
 ## 📍排行榜​​
 #### 🔆通用大模型
 
-| Model                | 1.TCM-ED-A | 2.TCM-ED-B | 3.TCM-FT  | 4.TCMeEE | 5.TCM-CHGD | 6.TCM-LitData | 7.TCM-MSDD | 8.TCM-Diagnosis | 9.TCM-PR | 10.TCM-FRD | 11.SE-A   | 12.SE-B |
+| Model                | 1.TCM-ED-A | 2.TCM-ED-B | 3.TCM-FT  | 4.TCMeEE | 5.TCM-CHGD | 6.TCM-LitData | 7.TCM-MSDD | 8.TCM-Diagnosis | 9.TCM-PR | 10.TCM-FRD | 11.TCM-SE-A | 12.TCM-SE-B |
 | -------------------- | ---------- | ---------- | --------- | -------- | ---------- | ------------- | ---------- | --------------- | -------- | ---------- | --------- | ------- |
 | gpt-4.1 | 64.67 | 75.15 | 71.81 | 52 | 55 | 64 | 35 | 49 | 35 | 49 | 70.99 | 74 |
 | gpt-4.1 Few-Shot | 72.01 | 74.25 | 71.78 | 78 | 48 | 59 | 34.44 | 51 | 40 | 54 | 73.15 | 72.34 |
@@ -65,7 +65,7 @@ cd MTCMB/data
 
 #### 
 
-| Model                | 1.TCM-ED-A | 2.TCM-ED-B | 3.TCM-FT  | 4.TCMeEE | 5.TCM-CHGD | 6.TCM-LitData | 7.TCM-MSDD | 8.TCM-Diagnosis | 9.TCM-PR | 10.TCM-FRD | 11.SE-A   | 12.SE-B   |
+| Model                | 1.TCM-ED-A | 2.TCM-ED-B | 3.TCM-FT  | 4.TCMeEE | 5.TCM-CHGD | 6.TCM-LitData | 7.TCM-MSDD | 8.TCM-Diagnosis | 9.TCM-PR | 10.TCM-FRD | 11.TCM-SE-A | 12.TCM-SE-B |
 | -------------------- | ---------- | ---------- | --------- | -------- | ---------- | ------------- | ---------- | --------------- | -------- | ---------- | --------- | --------- |
 | o4-mini | 70.92 | 74.42 | 68.82 | 78 | 45 | 61 | 17.25 | 51 | 26 | 43 | 55.3 | 54 |
 | o4-mini Few-Shot | 69.92 | 74.34 | 69.32 | 79 | 47 | **64** | 28.06 | **52** | 38 | 52 | 58.55 | 70.21 |
@@ -81,7 +81,7 @@ cd MTCMB/data
 
 #### 
 
-| Model            | 1.TCM-ED-A | 2.TCM-ED-B | 3.TCM-FT  | 4.TCM-eEE | 5.TCM-CHGD | 6.TCM-LitData | 7.TCM-MSDD | 8.TCM-Diagnosis | 9.TCM-PR | 10.TCM-FRD | 11.SE-A   | 12.SE-B |
+| Model            | 1.TCM-ED-A | 2.TCM-ED-B | 3.TCM-FT  | 4.TCMeEE | 5.TCM-CHGD | 6.TCM-LitData | 7.TCM-MSDD | 8.TCM-Diagnosis | 9.TCM-PR | 10.TCM-FRD | 11.TCM-SE-A | 12.TCM-SE-B |
 | ---------------- | ---------- | ---------- | --------- | --------- | ---------- | ------------- | ---------- | --------------- | -------- | ---------- | --------- | ------- |
 | WINGPT2-14B-Chat | 40.25 | 40.98 | 68.39 | 57 | 40 | 44 | 17 | 45 | 22 | 35 | 43.2 | 46 |
 | WINGPT2-14B-Chat Few-Shot | 41 | 44.9 | 68.6 | 69 | 44 | 38 | 23 | 48 | 21 | **43** | 39.38 | 44 |
@@ -117,11 +117,11 @@ cd MTCMB/data
 
 - **语言理解**：通过医案中的实体抽取、从医患对话生成结构化医案以及基于文献内容回答问题等形式，评估大模型在中医文本理解和信息抽取方面的表现力与准确性。
 
-- **诊断**：考察大模型根据患者临床信息（如症状、体征、舌脉等）进行辨证分析，并准确判断疾病名称与证型的能力。
+- **诊断推理**：考察大模型根据患者临床信息（如症状、体征、舌脉等）进行辨证分析，并准确判断疾病名称与证型的能力。
 
-- **方剂推荐**：评估大模型根据病情描述和证型特征，推荐合适中药方剂的能力，涵盖对方剂组成、配伍规律及病症对应关系的理解。
+- **处方推荐**：评估大模型根据病情描述和证型特征，推荐合适中药方剂的能力，涵盖对方剂组成、配伍规律及病症对应关系的理解。
 
-- **安全评价**：通过填空题与选择题的形式，考察大模型识别中医实践中涉及的安全风险，如有毒中药剂量控制、孕妇禁用药及针灸禁忌等内容，确保其具备基本的临床安全性判断能力。
+- **安全评估**：通过填空题与选择题的形式，考察大模型识别中医实践中涉及的安全风险，如有毒中药剂量控制、孕妇禁用药及针灸禁忌等内容，确保其具备基本的临床安全性判断能力。
 
   
 
@@ -131,18 +131,18 @@ cd MTCMB/data
 
 | 维度         | 数据集名称    | 数量  | 任务描述                                               | 数据来源                                                     | 构建方式                                      | 评估方法                           |
 | ------------ | ------------- | ----- | ------------------------------------------------------ | ------------------------------------------------------------ | --------------------------------------------- | ---------------------------------- |
-| 中医知识问答 | [TCM-ED-A](https://github.com/Wayyuanyuan/MTCMB/blob/main/dataset_info/TCM-ED-A.md)      | 1,200 | 12 学科五选一选择题（A–E）                           | 国家中医中级主治医师考试官方题库                             | 12 临床学科各分层抽样 100 题；三名执业医师专家审核 | 准确率                             |
-|              | [TCM-ED-B](https://github.com/Wayyuanyuan/MTCMB/blob/main/dataset_info/TCM-ED-B.md)     | 4800  | 执业医师全真模拟选择题                               | 国家中医执业医师资格考试官方题库                             | 8 套完整模拟卷（每套 600 题）随机抽样           | 准确率                             |
-|              | [TCM-FT](https://github.com/Wayyuanyuan/MTCMB/blob/main/dataset_info/TCM-FT.md)       | 100   | 开放式问答题                                             | 《中医学问答题库》（胡熙明主编）                             | 随机抽样后经 DeepSeek-R1 语义改写并提取要点（`points`）；专家交叉验证 | BERTScore（要点对齐）              |
-| 中医语言理解 | [TCMeEE](https://github.com/Wayyuanyuan/MTCMB/blob/main/dataset_info/TCMeEE.md)        | 100   | 根据医案识别并抽取与中医相关的实体，生成结构化病历。   | [中医智库](https://zhongyigen.com/)（95%）及执业医师提交医案（5%） | DeepSeek-R1 自动生成结构化参考答案；专家复核 | BLEU、ROUGE、BERTScore 取平均      |
-|              | [TCM-CHGD](https://github.com/Wayyuanyuan/MTCMB/blob/main/dataset_info/TCM-CHGD.md)      | 100   | 根据医患对话生成结构化病历。                           | 国家中医药管理局认证中心《中医执业助理/执业医师实践技能考试案例分析题库》 | 基于官方病案摘要，DeepSeek-R1 逆向生成模拟问诊对话；专家审核 | BLEU、ROUGE、BERTScore 取平均      |
-|              | [TCM-LitData](https://github.com/Wayyuanyuan/MTCMB/blob/main/dataset_info/TCM-LitData.md)   | 100   | 根据文献内容回答问题。                                 | [阿里云天池实验室的中医文献问题生成数据集](https://tianchi.aliyun.com/dataset/86895) | 从数据集随机抽取100道题目，并且由专业人员复核 | ROUGE 和 BLEU二者取平均            |
-| 中医诊断     | [TCM-MSDD](https://github.com/Wayyuanyuan/MTCMB/blob/main/dataset_info/TCM-MSDD.md)      | 100   | 多标签证型与疾病分类。                                 | [CCL25-Eval 任务 9 子任务 1](https://tianchi.aliyun.com/competition/entrance/532301) | 保留原始标注并经专家复核                         | 准确率（多标签集合匹配）           |
-|              | [TCM-Diagnosis](https://github.com/Wayyuanyuan/MTCMB/blob/main/dataset_info/TCM-Diagnosis.md) | 200   | 根据症状表现给出疾病名称、证名、病位、病性。           | 国家“十三五”规划教材（中医内/外/妇/儿科学，各 50 例）        | 术语规范化临床表现作输入；执业医师标注结构化参考答案 | BLEU、ROUGE、BERTScore 取平均      |
-| 方剂推荐     | [TCM-PR](https://github.com/Wayyuanyuan/MTCMB/blob/main/dataset_info/TCM-PR.md)        | 100   | 根据临床信息推荐中药方剂（药物集合匹配）。             | [CCL25-Eval 任务 9 子任务 2](https://tianchi.aliyun.com/competition/entrance/532301) | 保留原始标注；临床专家修订病案与参考答案 | Jaccard、Precision、Recall、F1、Size Agreement 及综合分 |
-|              | [TCM-FRD](https://github.com/Wayyuanyuan/MTCMB/blob/main/dataset_info/TCM-FRD.md)       | 200   | 根据证候表现给出治法、方剂名与药物组成。               | 国家“十三五”规划教材（与 TCM-Diagnosis 并行构建）            | 术语规范化临床表现作输入；执业医师标注           | BLEU、ROUGE、BERTScore 取平均      |
-| 中医安全评价 | [TCM-SE-A](https://github.com/Wayyuanyuan/MTCMB/blob/main/dataset_info/TCM-SAFE1%262.md) | 50    | 填空题（毒性、配伍禁忌、妊娠禁忌等）                   | 《中华人民共和国药典》（2020 年版）                          | DeepSeek-R1 合成临床情境填空题；专家审核         | GLM-4-Air-250414 模型评分          |
-|              | [TCM-SE-B](https://github.com/Wayyuanyuan/MTCMB/blob/main/dataset_info/TCM-SAFE1%262.md) | 50    | 选择题（用药与针灸安全）                               | 《中华人民共和国药典》（2020 年版）                          | 基于同一安全记录由 DeepSeek-R1 生成选择题；专家审核 | 准确率                             |
+| 知识问答 | [TCM-ED-A](https://github.com/Wayyuanyuan/MTCMB/blob/main/dataset_info/TCM-ED-A.md)      | 1,200 | 12 学科五选一选择题（A–E）                           | 国家中医中级主治医师考试官方题库                             | 12 临床学科各分层抽样 100 题；三名执业医师专家审核 | 准确率                             |
+|          | [TCM-ED-B](https://github.com/Wayyuanyuan/MTCMB/blob/main/dataset_info/TCM-ED-B.md)     | 4800  | 执业医师全真模拟选择题                               | 国家中医执业医师资格考试官方题库                             | 8 套完整模拟卷（每套 600 题）随机抽样           | 准确率                             |
+|          | [TCM-FT](https://github.com/Wayyuanyuan/MTCMB/blob/main/dataset_info/TCM-FT.md)       | 100   | 开放式问答题                                             | 《中医学问答题库》（胡熙明主编）                             | 随机抽样后经 DeepSeek-R1 语义改写并提取要点（`points`）；专家交叉验证 | BERTScore（要点对齐）              |
+| 语言理解 | [TCMeEE](https://github.com/Wayyuanyuan/MTCMB/blob/main/dataset_info/TCMeEE.md)        | 100   | 根据医案识别并抽取与中医相关的实体，生成结构化病历。   | [中医智库](https://zhongyigen.com/)（95%）及执业医师提交医案（5%） | DeepSeek-R1 自动生成结构化参考答案；专家复核 | BLEU、ROUGE、BERTScore 取平均      |
+|          | [TCM-CHGD](https://github.com/Wayyuanyuan/MTCMB/blob/main/dataset_info/TCM-CHGD.md)      | 100   | 根据医患对话生成结构化病历。                           | 国家中医药管理局认证中心《中医执业助理/执业医师实践技能考试案例分析题库》 | 基于官方病案摘要，DeepSeek-R1 逆向生成模拟问诊对话；专家审核 | BLEU、ROUGE、BERTScore 取平均      |
+|          | [TCM-LitData](https://github.com/Wayyuanyuan/MTCMB/blob/main/dataset_info/TCM-LitData.md)   | 100   | 根据文献内容回答问题。                                 | [阿里云天池实验室的中医文献问题生成数据集](https://tianchi.aliyun.com/dataset/86895) | 从数据集随机抽取100道题目，并且由专业人员复核 | ROUGE 和 BLEU二者取平均            |
+| 诊断推理 | [TCM-MSDD](https://github.com/Wayyuanyuan/MTCMB/blob/main/dataset_info/TCM-MSDD.md)      | 100   | 多标签证型与疾病分类。                                 | [CCL25-Eval 任务 9 子任务 1](https://tianchi.aliyun.com/competition/entrance/532301) | 保留原始标注并经专家复核                         | 准确率（多标签集合匹配）           |
+|          | [TCM-Diagnosis](https://github.com/Wayyuanyuan/MTCMB/blob/main/dataset_info/TCM-Diagnosis.md) | 200   | 根据症状表现给出疾病名称、证名、病位、病性。           | 国家“十三五”规划教材（中医内/外/妇/儿科学，各 50 例）        | 术语规范化临床表现作输入；执业医师标注结构化参考答案 | BLEU、ROUGE、BERTScore 取平均      |
+| 处方推荐 | [TCM-PR](https://github.com/Wayyuanyuan/MTCMB/blob/main/dataset_info/TCM-PR.md)        | 100   | 根据临床信息推荐中药方剂（药物集合匹配）。             | [CCL25-Eval 任务 9 子任务 2](https://tianchi.aliyun.com/competition/entrance/532301) | 保留原始标注；临床专家修订病案与参考答案 | Jaccard、Precision、Recall、F1、Size Agreement 及综合分 |
+|          | [TCM-FRD](https://github.com/Wayyuanyuan/MTCMB/blob/main/dataset_info/TCM-FRD.md)       | 200   | 根据证候表现给出治法、方剂名与药物组成。               | 国家“十三五”规划教材（与 TCM-Diagnosis 并行构建）            | 术语规范化临床表现作输入；执业医师标注           | BLEU、ROUGE、BERTScore 取平均      |
+| 安全评估 | [TCM-SE-A](https://github.com/Wayyuanyuan/MTCMB/blob/main/dataset_info/TCM-SE-A.md) | 50    | 填空题（毒性、配伍禁忌、妊娠禁忌等）                   | 《中华人民共和国药典》（2020 年版）                          | DeepSeek-R1 合成临床情境填空题；专家审核         | GLM-4-Air-250414 模型评分          |
+|          | [TCM-SE-B](https://github.com/Wayyuanyuan/MTCMB/blob/main/dataset_info/TCM-SE-B.md) | 50    | 选择题（用药与针灸安全）                               | 《中华人民共和国药典》（2020 年版）                          | 基于同一安全记录由 DeepSeek-R1 生成选择题；专家审核 | 准确率                             |
 
 #### 目录结构
 

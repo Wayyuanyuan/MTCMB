@@ -1,7 +1,7 @@
 from make_answer.chat.chat_invoker import ChatInvoker
 
 
-def drug_1(prompt_type:int,data: dict, llm: ChatInvoker) -> dict:
+def tcm_se_a(prompt_type: int, data: dict, llm: ChatInvoker) -> dict:
 
     zero_shot_prompt = f'请回答以下填空题，要求只返回填空内容，不需要给出解释，严格使用医学专业表达。注意：如果有多个空，不同回答之间用逗号隔开。题目为：{data["question"]}'
     few_shot_prompt=f'''

@@ -10,6 +10,7 @@ import tqdm
 from loguru import logger
 
 from evaluate.works import question_standard_dict
+from mtcmb_dataset_names import resolve_data_stem, resolve_dataset_jsonl
 from mtcmb_datasets import CANONICAL_DATA_ROOT, Purpose, load_records, shot_from_prompt_type
 
 PROJECT_ROOT = Path(__file__).resolve().parents[1]
@@ -45,12 +46,13 @@ def evaluate_process(
         if not os.path.isfile(chat_answer_file) or os.path.splitext(chat_answer_file)[1] != ".jsonl":
             continue
 
-        # 获取答案类别（即mid.jsonl文件所在目录名）也就是数据集名称,例如1.TCM_ED_A
+        # 获取答案类别（mid.jsonl 所在目录名），如 11.TCM_SE_A 或提交用的 TCM-SE-A
         chat_answer_kind = os.path.basename(os.path.dirname(chat_answer_file))
+        data_stem = resolve_data_stem(chat_answer_kind)
         output_dir = os.path.dirname(chat_answer_file)
         output_file = os.path.join(output_dir, "score.json")  # 评分结果文件路径
 
-        dataset_name = chat_answer_kind + ".jsonl"
+        dataset_name = resolve_dataset_jsonl(chat_answer_kind)
         resolved_standard_root = _resolve_standard_root(standard_answer_root)
         use_loader = resolved_standard_root == CANONICAL_DATA_ROOT.resolve()
         standard_answer_file = os.path.join(resolved_standard_root, dataset_name)
@@ -63,11 +65,8 @@ def evaluate_process(
             f"{'loader:' + dataset_name if use_loader else standard_answer_file}"
         )
 
-        # 根据问题类别选择评估函数
-        if chat_answer_kind[0].isalpha():
-            work_func = question_standard_dict[chat_answer_kind[0]]  # 按首字母匹配
-        else:
-            work_func = question_standard_dict[chat_answer_kind.split(".")[0]]  # 按前缀匹配
+        # 根据数据集编号前缀选择评估函数（兼容 TCM-SE-A 等提交目录名）
+        work_func = question_standard_dict[data_stem.split(".")[0]]
 
         # 如果没有score.json，先进行评分计算
         if not os.path.exists(output_file):
@@ -122,19 +121,19 @@ def evaluate_process(
             scores = json.load(f)
 
         # 计算综合得分（根据不同问题类型采用不同计算方式）
-        if chat_answer_kind in ["1.TCM_ED_A", "2.TCM_ED_B", "7.TCM_MSDD",  "12.TCM_DC_B"]:
+        if data_stem in ["1.TCM_ED_A", "2.TCM_ED_B", "7.TCM_MSDD", "12.TCM_SE_B"]:
             score = sum(scores) / len(scores) * 100
-        elif chat_answer_kind in ["11.TCM_DC_A"]:
+        elif data_stem in ["11.TCM_SE_A"]:
             scores_float = [float(x) for x in scores]
             score = sum(scores_float) / len(scores) * 100
-        elif chat_answer_kind in ["9.TCM_PR"]:
+        elif data_stem in ["9.TCM_PR"]:
             score = sum([s["Task2_Score"] for s in scores if isinstance(s, dict)]) * 100 // len(scores)
-        elif chat_answer_kind in ["3.TCM_FT"]:
+        elif data_stem in ["3.TCM_FT"]:
             score = sum([s["bert"] for s in scores if isinstance(s, dict)]) * 100 // len(scores)
-        elif chat_answer_kind in["6.TCM_LitData"]:
+        elif data_stem in ["6.TCM_LitData"]:
             score = sum([((s["rouge_1"] * 100 + s["rouge_l"] * 100) / 2 + s["bleu"]) / 2
                          for s in scores if isinstance(s, dict)]) // len(scores)
-        elif chat_answer_kind in ["4.TCMeEE", "5.TCM_CHGD", "8.TCM_DiagData", "10.TCM_FRD"]:
+        elif data_stem in ["4.TCMeEE", "5.TCM_CHGD", "8.TCM_Diagnosis", "8.TCM_DiagData", "10.TCM_FRD"]:
             score = sum([((s["rouge_1"]*100 + s["rouge_l"]*100) / 2 + s["bert"] *100+ s["bleu"]) / 3
                          for s in scores if isinstance(s, dict)])// len(scores)
         else:

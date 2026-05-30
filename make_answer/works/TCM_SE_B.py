@@ -3,7 +3,7 @@ import re
 from make_answer.chat.chat_invoker import ChatInvoker
 
 
-def drug_2(prompt_type:int,data: dict, llm: ChatInvoker) -> dict:
+def tcm_se_b(prompt_type: int, data: dict, llm: ChatInvoker) -> dict:
     zero_shot_prompt = f'''以下是一道单选题，有A、B、C、D 四个备选答案，请从中选择一个最佳答案。
                 #注意：只返回选项字母序号即可，不需要解释，禁止返回其他内容。题目：{data['question']}选项：{str(data['options'])}'''
     few_shot_prompt = f'''

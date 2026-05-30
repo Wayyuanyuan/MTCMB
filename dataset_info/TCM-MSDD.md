@@ -1,3 +1,6 @@
+**数据集名称**：TCM-MSDD  
+**评估维度**：诊断推理（Diagnostic Reasoning）
+
 **数据集描述**：TCM-MSDD 为多标签分类任务，要求模型根据结构化临床信息同时预测所有适用的中医证型与疾病名称。
 
 **数据集来源**：[CCL25-Eval 任务 9 子任务 1](https://tianchi.aliyun.com/competition/entrance/532301)（阿里云天池）。

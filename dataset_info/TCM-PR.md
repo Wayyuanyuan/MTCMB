@@ -1,3 +1,6 @@
+**数据集名称**：TCM-PR  
+**评估维度**：处方推荐（Prescription Recommendation）
+
 **数据集描述**：TCM-PR 评估模型根据复杂临床信息推荐合理中药方剂的能力。预测目标为药物集合，与标准答案进行集合匹配评估。
 
 **数据集来源**：[CCL25-Eval 任务 9 子任务 2](https://tianchi.aliyun.com/competition/entrance/532301)（阿里云天池）。
