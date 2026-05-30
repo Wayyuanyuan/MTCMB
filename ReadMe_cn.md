@@ -19,16 +19,20 @@
 
 ## 🌐 数据下载
 
-MTCMB 在 [Zenodo](https://doi.org/10.5281/zenodo.20362743)（CC-BY 4.0）与 [GitHub](https://github.com/Wayyuanyuan/MTCMB) 公开发布，包含 12 个子数据集、评估脚本与各任务说明文档。
+共 **12** 个子数据集、**7,100** 条样本，以 JSONL 格式存放于 `data/` 目录。
 
-（1）克隆仓库
+（1）从 [GitHub](https://github.com/Wayyuanyuan/MTCMB) 获取
 
 ```bash
 git clone https://github.com/Wayyuanyuan/MTCMB.git
 cd MTCMB/data
 ```
 
-（2）[Hugging Face Datasets](https://huggingface.co/datasets/Bunnybeck/MTCMB/tree/main)
+克隆仓库后，数据文件位于 `data/*.jsonl`。
+
+（2）从 [Zenodo](https://doi.org/10.5281/zenodo.20362743) 下载（CC-BY 4.0）
+
+Zenodo 提供 **12** 个子集的 JSONL 数据文件；下载后置于本地 `data/` 目录即可。
 
 ## 📍排行榜​​
 #### 🔆通用大模型

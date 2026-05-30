@@ -22,13 +22,20 @@
 
 ## 🌐 Data Download
 
-（1）ZIP format
+**12** sub-datasets, **7,100** samples in total, stored as JSONL files under `data/`.
 
-```python
-  https://github.com/Wayyuanyuan/MTCMB.git && cd data
+（1）From [GitHub](https://github.com/Wayyuanyuan/MTCMB)
+
+```bash
+git clone https://github.com/Wayyuanyuan/MTCMB.git
+cd MTCMB/data
 ```
 
-（2）[Huggingface datasets](https://huggingface.co/datasets/Bunnybeck/MTCMB/tree/main)
+After cloning, the data files are in `data/*.jsonl`.
+
+（2）From [Zenodo](https://doi.org/10.5281/zenodo.20362743) (CC-BY 4.0)
+
+Zenodo hosts the **12** sub-dataset JSONL files; place them in a local `data/` directory after download.
 
 
 
