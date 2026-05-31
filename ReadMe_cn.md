@@ -7,7 +7,7 @@
 
 
 <p align="center">
-   📃 <a href="https://doi.org/10.5281/zenodo.20362743" target="_blank">Zenodo</a> • 🌐 <a href="https://github.com/Wayyuanyuan/MTCMB" target="_blank">GitHub</a>  
+   📃 <a href="https://doi.org/10.5281/zenodo.20465629" target="_blank">Zenodo</a> • 🌐 <a href="https://github.com/Wayyuanyuan/MTCMB" target="_blank">GitHub</a>  
    <br>  <a href="https://github.com/Wayyuanyuan/MTCMB/blob/main/ReadMe_cn.md">   中文</a> | <a href="https://github.com/Wayyuanyuan/MTCMB/blob/main/ReadMe.md"> English
 </p>
 
@@ -21,18 +21,18 @@
 
 共 **12** 个子数据集、**7,100** 条样本，以 JSONL 格式存放于 `data/` 目录。
 
-（1）从 [GitHub](https://github.com/Wayyuanyuan/MTCMB) 获取
+（1）从 [GitHub](https://github.com/Wayyuanyuan/MTCMB) 获取完整项目（数据、评估代码与文档）
 
 ```bash
 git clone https://github.com/Wayyuanyuan/MTCMB.git
 cd MTCMB/data
 ```
 
-克隆仓库后，数据文件位于 `data/*.jsonl`。
+克隆后数据位于 `data/*.jsonl`（每条含 `answer` 与 `source`）。
 
-（2）从 [Zenodo](https://doi.org/10.5281/zenodo.20362743) 下载（CC-BY 4.0）
+（2）从 [Zenodo](https://doi.org/10.5281/zenodo.20465629) 下载数据集归档（CC-BY 4.0）
 
-Zenodo 提供 **12** 个子集的 JSONL 数据文件；下载后置于本地 `data/` 目录即可。
+Zenodo 提供 **12** 个子集 JSONL 文件；下载后置于本地 `data/` 目录即可。
 
 ## 📍排行榜​​
 #### 🔆通用大模型
@@ -141,7 +141,7 @@ Zenodo 提供 **12** 个子集的 JSONL 数据文件；下载后置于本地 `da
 | 语言理解 | [TCMeEE](https://github.com/Wayyuanyuan/MTCMB/blob/main/dataset_info/TCMeEE.md)        | 100   | 根据医案识别并抽取与中医相关的实体，生成结构化病历。   | [中医智库](https://zhongyigen.com/)（95%）及执业医师提交医案（5%） | DeepSeek-R1 自动生成结构化参考答案；专家复核 | BLEU、ROUGE、BERTScore 取平均      |
 |          | [TCM-CHGD](https://github.com/Wayyuanyuan/MTCMB/blob/main/dataset_info/TCM-CHGD.md)      | 100   | 根据医患对话生成结构化病历。                           | 国家中医药管理局认证中心《中医执业助理/执业医师实践技能考试案例分析题库》 | 基于官方病案摘要，DeepSeek-R1 逆向生成模拟问诊对话；专家审核 | BLEU、ROUGE、BERTScore 取平均      |
 |          | [TCM-LitData](https://github.com/Wayyuanyuan/MTCMB/blob/main/dataset_info/TCM-LitData.md)   | 100   | 根据文献内容回答问题。                                 | [阿里云天池实验室的中医文献问题生成数据集](https://tianchi.aliyun.com/dataset/86895) | 从数据集随机抽取100道题目，并且由专业人员复核 | ROUGE 和 BLEU二者取平均            |
-| 诊断推理 | [TCM-MSDD](https://github.com/Wayyuanyuan/MTCMB/blob/main/dataset_info/TCM-MSDD.md)      | 100   | 多标签证型与疾病分类。                                 | [CCL25-Eval 任务 9 子任务 1](https://tianchi.aliyun.com/competition/entrance/532301) | 保留原始标注并经专家复核                         | 准确率（多标签集合匹配）           |
+| 诊断推理 | [TCM-MSDD](https://github.com/Wayyuanyuan/MTCMB/blob/main/dataset_info/TCM-MSDD.md)      | 100   | 多标签证型（10 类）与疾病（4 类）分类。                | [CCL25-Eval 任务 9 子任务 1](https://tianchi.aliyun.com/competition/entrance/532301) | 保留原始标注并经专家复核                         | 准确率（多标签）                   |
 |          | [TCM-Diagnosis](https://github.com/Wayyuanyuan/MTCMB/blob/main/dataset_info/TCM-Diagnosis.md) | 200   | 根据症状表现给出疾病名称、证名、病位、病性。           | 国家“十三五”规划教材（中医内/外/妇/儿科学，各 50 例）        | 术语规范化临床表现作输入；执业医师标注结构化参考答案 | BLEU、ROUGE、BERTScore 取平均      |
 | 处方推荐 | [TCM-PR](https://github.com/Wayyuanyuan/MTCMB/blob/main/dataset_info/TCM-PR.md)        | 100   | 根据临床信息推荐中药方剂（药物集合匹配）。             | [CCL25-Eval 任务 9 子任务 2](https://tianchi.aliyun.com/competition/entrance/532301) | 保留原始标注；临床专家修订病案与参考答案 | Jaccard、Precision、Recall、F1、Size Agreement 及综合分 |
 |          | [TCM-FRD](https://github.com/Wayyuanyuan/MTCMB/blob/main/dataset_info/TCM-FRD.md)       | 200   | 根据证候表现给出治法、方剂名与药物组成。               | 国家“十三五”规划教材（与 TCM-Diagnosis 并行构建）            | 术语规范化临床表现作输入；执业医师标注           | BLEU、ROUGE、BERTScore 取平均      |
@@ -150,15 +150,14 @@ Zenodo 提供 **12** 个子集的 JSONL 数据文件；下载后置于本地 `da
 
 #### 目录结构
 
-论文 Data Record 中描述的三类目录与本仓库对应关系如下：
+与论文 Data Record 一致，仓库包含两个主目录：
 
-| 论文目录 | 说明 | 本仓库实现 |
-| -------- | ---- | ---------- |
-| `data/` | 零样本评测集（`answer` 为空） | `data/*.jsonl` + `mtcmb_datasets.load_records(purpose=benchmark, shot=zero)` |
-| `data_few_shot/` | 少样本评测集（去掉提示词中已用作示例的样本） | 同上，`shot=few` 自动排除示例 id |
-| `dataset_info/` | 各子集元数据与指标说明 | `dataset_info/*.md` |
+| 目录 | 说明 |
+| ---- | ---- |
+| [`data/`](data/) | **12** 个子数据集 JSONL（`*.jsonl`），每条样本含标准答案 `answer` 与溯源字段 `source` |
+| [`dataset_info/`](dataset_info/) | 各子集元数据（`.md`）：数据来源、预处理、评估指标等 |
 
-评测时标准答案与题目共用 `data/` 目录，通过 `purpose=standard` 加载完整标注，无需维护多套物理副本。详见 [`dataset_info/数据记录.md`](dataset_info/数据记录.md)。
+**数据获取**：[Zenodo](https://doi.org/10.5281/zenodo.20465629)（CC-BY 4.0）归档 **12** 个子集数据文件；[GitHub](https://github.com/Wayyuanyuan/MTCMB) 提供完整项目（含 `data/`、评估脚本与文档）。Few-shot / zero-shot 通过 `mtcmb_datasets.load_records(..., shot=...)` 派生题集，无需单独 `data_few_shot/` 目录。详见 [`dataset_info/数据记录.md`](dataset_info/数据记录.md)。
 
 ## 🔆如何提交和评估
 

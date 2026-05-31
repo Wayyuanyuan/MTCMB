@@ -8,7 +8,7 @@
 ![title](https://github.com/Wayyuanyuan/MTCMB/blob/main/pics/title2.png)
 
 <p align="center">
-   📃 <a href="" target="_blank">Paper</a> • 🌐 <a href="" target="_blank">Website</a>  
+   📃 <a href="https://doi.org/10.5281/zenodo.20465629" target="_blank">Zenodo</a> • 🌐 <a href="https://github.com/Wayyuanyuan/MTCMB" target="_blank">GitHub</a>  
    <br>  <a href="https://github.com/Wayyuanyuan/MTCMB/blob/main/ReadMe_cn.md">   中文</a> | <a href="https://github.com/Wayyuanyuan/MTCMB/blob/main/ReadMe.md"> English
 </p>
 
@@ -22,20 +22,20 @@
 
 ## 🌐 Data Download
 
-**12** sub-datasets, **7,100** samples in total, stored as JSONL files under `data/`.
+**12** sub-datasets, **7,100** annotated samples in total, stored as JSON Lines under `data/`.
 
-（1）From [GitHub](https://github.com/Wayyuanyuan/MTCMB)
+（1）From [GitHub](https://github.com/Wayyuanyuan/MTCMB) — full project (data, evaluation code, and documentation)
 
 ```bash
 git clone https://github.com/Wayyuanyuan/MTCMB.git
 cd MTCMB/data
 ```
 
-After cloning, the data files are in `data/*.jsonl`.
+After cloning, data files are at `data/*.jsonl` (each entry includes `answer` and `source`).
 
-（2）From [Zenodo](https://doi.org/10.5281/zenodo.20362743) (CC-BY 4.0)
+（2）From [Zenodo](https://doi.org/10.5281/zenodo.20465629) (CC-BY 4.0) — canonical dataset archive
 
-Zenodo hosts the **12** sub-dataset JSONL files; place them in a local `data/` directory after download.
+Zenodo hosts the **12** sub-dataset JSONL files; after download, place them in a local `data/` directory.
 
 
 
@@ -142,18 +142,29 @@ The following figure shows the data volume distribution across five dimensions: 
 
 | Dimension                     | Dataset name                                                 | Quantity | Task description                                             | Data source                                                  | Construction method                                          | Evaluation method                                 |
 | ----------------------------- | ------------------------------------------------------------ | -------- | ------------------------------------------------------------ | ------------------------------------------------------------ | ------------------------------------------------------------ | ------------------------------------------------- |
-|Knowledge Question Answering | [TCM-ED-A](https://github.com/Wayyuanyuan/MTCMB/blob/main/dataset_info/TCM-ED-A.md) | 1,200    | Multiple-choice questions                                     | 12 subjects of the TCM intermediate attending physician examination | 100 questions are randomly selected for each subject         | Accuracy                                          |
-|                               | [TCM-ED-B](https://github.com/Wayyuanyuan/MTCMB/blob/main/dataset_info/TCM-ED-B.md) | 4800     | Multiple-choice questions                                     | Practicing physician question bank                           | 8 complete practicing physician examination papers           | Accuracy                                          |
-|                               | [TCM-FT](https://github.com/Wayyuanyuan/MTCMB/blob/main/dataset_info/TCM-FT.md) | 100      | Questions and Answers                                        | "Chinese Medicine Question and Answer Database" edited by Hu Ximing | 100 questions and answers are randomly selected from the question bank and reviewed by professionals | BertScore                                         |
-| Language Understanding        | [TCMeEE](https://github.com/Wayyuanyuan/MTCMB/blob/main/dataset_info/TCMeEE.md) | 100      | Based on medical records, entities related to Chinese medicine are identified and extracted to generate structured medical records. | The medical cases are from the website [《TCM Think Tank》](https://zhongyigen.com/) and real medical cases provided by Hunan University of Chinese Medicine | Use deepseek-r1 to generate answers, and then professionals review the generated answers | The average of BERTScore, ROUGE and BLEU is taken |
-|                               | [TCM-CHGD](https://github.com/Wayyuanyuan/MTCMB/blob/main/dataset_info/TCM-CHGD.md) | 100      | Generate medical cases based on doctor-patient dialogues.    | Call deepseek r1 to generate doctor-patient dialogues based on real medical cases | 100 medical cases are used to reversely generate doctor-patient dialogues | The average of BERTScore, ROUGE and BLEU is taken |
-|                               | [TCM-LitData](https://github.com/Wayyuanyuan/MTCMB/blob/main/dataset_info/TCM-LitData.md) | 100      | Answer questions based on the content of the literature.     | [Dataset for TCM Literature Question Generation from Alibaba Cloud Tianchi Lab](https://tianchi.aliyun.com/dataset/86895) | 100 questions are randomly selected from the dataset and reviewed by professionals | Average of ROUGE and BLEU                         |
-| Diagnostic Reasoning          | [TCM-MSDD](https://github.com/Wayyuanyuan/MTCMB/blob/main/dataset_info/TCM-MSDD.md) | 100      | Infer the corresponding syndrome type and disease name from clinical information. | [Alibaba Cloud Tianchi Lab CCL25-Eval Task 9 Dataset Subtask 1](https://tianchi.aliyun.com/competition/entrance/532301) | Randomly select 100 questions and have them reviewed by professionals | CCL25-Eval Task 9 task1_score                     |
-|                               | [TCM-Diagnosis](https://github.com/Wayyuanyuan/MTCMB/blob/main/dataset_info/TCM-Diagnosis.md) | 200      | Give the disease name, syndrome name, location, and nature of the disease based on the symptoms. | Real internal medicine, internal medicine, gynecology and pediatrics syndrome data set provided by Hunan University of Chinese Medicine | 50 cases are selected from each of the four subjects of internal medicine, internal medicine, gynecology and pediatrics | Average of BERTScore, ROUGE and BLEU              |
-| Prescription Recommendation   | [TCM-PR](https://github.com/Wayyuanyuan/MTCMB/blob/main/dataset_info/TCM-PR.md) | 100      | Recommend appropriate Chinese medicine prescriptions based on clinical information. | [Alibaba Cloud Tianchi Laboratory CCL25-Eval Task 9 Dataset Subtask 2](https://tianchi.aliyun.com/competition/entrance/532301) | Randomly select 100 questions from the dataset and review them by professionals | CCL25-Eval Task 9 task2_score                     |
-|                               | [TCM-FRD](https://github.com/Wayyuanyuan/MTCMB/blob/main/dataset_info/TCM-FRD.md) | 200      | Give treatment methods, prescription names, and drug composition (excluding dosage) based on the manifestation of the syndrome. | Real internal medicine, internal medicine, gynecology and pediatric syndrome data set provided by Hunan University of Chinese Medicine | 200 cases of internal medicine, internal medicine, gynecology and pediatrics were selected | Average of BERTScore, ROUGE and BLEU              |
-| Safety Assessment             | [TCM-SE-A](https://github.com/Wayyuanyuan/MTCMB/blob/main/dataset_info/TCM-SE-A.md) | 50       | Fill-in-the-blank questions                                  | Safety problem data set provided by Hunan University of Chinese Medicine | Common Chinese medicine and acupuncture contraindications fill-in-the-blank questions (50 questions) | LLM scoring                                       |
-|                               | [TCM-SE-B](https://github.com/Wayyuanyuan/MTCMB/blob/main/dataset_info/TCM-SE-B.md) | 50       | Multiple-choice questions                                     | Safety problem data set provided by Hunan University of Chinese Medicine | Common contraindications of traditional Chinese medicine and acupuncture (multiple-choice questions) (50 questions) | Accuracy                                          |
+| Knowledge Question Answering | [TCM-ED-A](https://github.com/Wayyuanyuan/MTCMB/blob/main/dataset_info/TCM-ED-A.md) | 1,200    | Five-option (A–E) MCQ across 12 clinical disciplines         | Official National TCM Attending Physician Examination item bank | Stratified sampling: 100 questions per discipline; expert validation | Accuracy                                          |
+|                               | [TCM-ED-B](https://github.com/Wayyuanyuan/MTCMB/blob/main/dataset_info/TCM-ED-B.md) | 4,800    | Full-length licensing-exam MCQ                               | Official National TCM Practitioner Licensing Examination item bank | Eight complete mock exams (600 questions each)               | Accuracy                                          |
+|                               | [TCM-FT](https://github.com/Wayyuanyuan/MTCMB/blob/main/dataset_info/TCM-FT.md) | 100      | Open-ended expert Q&A                                        | *Question and Answer Item Bank for Traditional Chinese Medicine* (Hu, 1988) | Random sampling; DeepSeek-R1 semantic rewrite and key-point extraction; expert cross-validation | BERTScore                                         |
+| Language Understanding        | [TCMeEE](https://github.com/Wayyuanyuan/MTCMB/blob/main/dataset_info/TCMeEE.md) | 100      | Entity extraction from clinical case narratives              | [TCM Wisdom Database](https://zhongyigen.com/) (95%) and practitioner-submitted cases (5%) | DeepSeek-R1 structured reference generation; expert review   | Mean of BLEU, ROUGE, BERTScore                    |
+|                               | [TCM-CHGD](https://github.com/Wayyuanyuan/MTCMB/blob/main/dataset_info/TCM-CHGD.md) | 100      | Structured medical records from doctor–patient dialogue      | Official TCM physician licensing practical-skills case bank  | DeepSeek-R1 reverse-generated consultations from official summaries; expert review | Mean of BLEU, ROUGE, BERTScore                    |
+|                               | [TCM-LitData](https://github.com/Wayyuanyuan/MTCMB/blob/main/dataset_info/TCM-LitData.md) | 100      | Reading comprehension over TCM literature passages           | [Alibaba Tianchi TCM literature QA dataset](https://tianchi.aliyun.com/dataset/dataDetail?dataId=86895) | Expert-verified classical and modern excerpts                | Mean of BLEU and ROUGE                            |
+| Diagnostic Reasoning          | [TCM-MSDD](https://github.com/Wayyuanyuan/MTCMB/blob/main/dataset_info/TCM-MSDD.md) | 100      | Multi-label TCM pattern and disease classification         | [CCL25-Eval Task 9, Subtask 1](https://tianchi.aliyun.com/competition/entrance/532301) | Preserved ground-truth labels; additional expert review      | Accuracy (multi-label set matching)               |
+|                               | [TCM-Diagnosis](https://github.com/Wayyuanyuan/MTCMB/blob/main/dataset_info/TCM-Diagnosis.md) | 200      | Structured TCM diagnosis from clinical manifestations      | National "13th Five-Year Plan" TCM textbooks (50 cases × 4 specialties) | Terminology-normalized inputs; physician-annotated outputs   | Mean of BLEU, ROUGE, BERTScore                    |
+| Prescription Recommendation   | [TCM-PR](https://github.com/Wayyuanyuan/MTCMB/blob/main/dataset_info/TCM-PR.md) | 100      | Prescription recommendation from clinical cases            | [CCL25-Eval Task 9, Subtask 2](https://tianchi.aliyun.com/competition/entrance/532301) | Expert-revised case narratives and reference answers         | Jaccard, Precision, Recall, F1, Size Agreement, composite score |
+|                               | [TCM-FRD](https://github.com/Wayyuanyuan/MTCMB/blob/main/dataset_info/TCM-FRD.md) | 200      | Treatment principles, formula names, and herbs               | National "13th Five-Year Plan" TCM textbooks (parallel to TCM-Diagnosis) | Physician-annotated ground truth                             | Mean of BLEU, ROUGE, BERTScore                    |
+| Safety Assessment             | [TCM-SE-A](https://github.com/Wayyuanyuan/MTCMB/blob/main/dataset_info/TCM-SE-A.md) | 50       | Fill-in-the-blank contraindications (toxicity, pregnancy, etc.) | *Pharmacopoeia of the PRC* (2020 Edition)                    | DeepSeek-R1 synthesis from pharmacopoeia records; expert review | GLM-4-Air-250414 assessor scoring                 |
+|                               | [TCM-SE-B](https://github.com/Wayyuanyuan/MTCMB/blob/main/dataset_info/TCM-SE-B.md) | 50       | Multiple-choice medication and acupuncture safety            | *Pharmacopoeia of the PRC* (2020 Edition)                    | DeepSeek-R1 MCQ generation from the same safety records; expert review | Accuracy                                          |
+
+#### Directory structure
+
+Aligned with the Data Record in the manuscript:
+
+| Directory | Description |
+| --------- | ----------- |
+| [`data/`](data/) | All **12** sub-datasets as JSONL (`*.jsonl`), each sample with `answer` and `source` |
+| [`dataset_info/`](dataset_info/) | Per-dataset metadata (`.md`): provenance, preprocessing, and metrics |
+
+[Zenodo](https://doi.org/10.5281/zenodo.20465629) (CC-BY 4.0) archives the dataset; [GitHub](https://github.com/Wayyuanyuan/MTCMB) hosts the full reproducibility package. Few-shot splits are derived via `mtcmb_datasets.load_records(..., shot=...)`, not a separate folder. See [`dataset_info/数据记录.md`](dataset_info/数据记录.md).
 
 
 
@@ -290,7 +301,7 @@ python main.py \
 
 
 
-Our evaluation benchmark includes 11 datasets, each containing multiple questions with an empty 'answer' field. A brief example is provided below:
+Our evaluation benchmark includes **12** sub-datasets. For model inference, load benchmark views with empty `answer` fields via `mtcmb_datasets.load_records(..., purpose=benchmark)`. A brief MCQ example is provided below:
 
 ```
 {"id": 1,"question": "4.‘Formulas that seek yang within yin’ is applicable to?","options": ["A.Yang excess","B.Dual deficiency of yin and yang","C.Yin deficiency","D.Yang deficiency","E.Yin excess"],"answer": ""}
