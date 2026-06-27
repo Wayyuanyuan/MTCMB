@@ -62,7 +62,7 @@ def chat_process(
             data_root: 输入数据根目录（包含多个JSONL文件）
             output_root: 输出根目录（默认"output"） ，传递过来的是output/模型名
             num_process: 并发线程数（实际使用线程池控制并发）
-            datasets: 仅处理这些数据集文件名（如 3.TCM_FT_question_points.jsonl）
+            datasets: 仅处理这些数据集文件名（如 TCM-FT.jsonl）
             limit: 最多再处理多少条（试跑可设 1；0/None 表示不限制）
             ids: 仅处理指定 id（如 {1}）
         """
@@ -148,11 +148,12 @@ def chat_process(
             if done_count:
                 process_bar.update(done_count)
 
-            # 动态选择处理函数（根据文件名前缀匹配question_prompt_dict）
-            if data_file[0].isalpha():
-                work_func = question_prompt_dict[data_file[0]]   # 按首字母匹配
-            else:
-                work_func = question_prompt_dict[data_file.split(".")[0]]  # 按文件名前缀匹配
+            # 动态选择处理函数（数据集名与 data/*.jsonl 文件名一致）
+            dataset_key = os.path.splitext(data_file)[0]
+            if dataset_key not in question_prompt_dict:
+                logger.error(f"Unknown dataset file: {data_file}")
+                continue
+            work_func = question_prompt_dict[dataset_key]
 
             # 批量处理数据
             if data_lines:

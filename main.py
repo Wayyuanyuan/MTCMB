@@ -86,7 +86,7 @@ def parse_args():
         "--datasets",
         type=str,
         default="",
-        help="仅生成指定数据集（逗号分隔文件名），如 3.TCM_FT_question_points.jsonl",
+        help="仅生成指定数据集（逗号分隔文件名），如 TCM-FT.jsonl",
     )
     parser.add_argument(
         "--limit",

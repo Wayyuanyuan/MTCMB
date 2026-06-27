@@ -173,8 +173,33 @@ Aligned with the Data Record in the manuscript:
 
 ### Environment Configuration
 
+Ensure that your development environment has installed the Python libraries listed in [requirements.txt](https://github.com/Wayyuanyuan/MTCMB/blob/main/requirements.txt).
 
-Ensure that your development environment has installed the Python libraries required by the [requirements.txt file](https://github.com/Wayyuanyuan/MTCMB/blob/main/requirements.txt).
+#### Environment variables (`.env`)
+
+Copy the template **[`.env.example`](.env.example)** to `.env` at the repository root and fill in keys and local model paths:
+
+```bash
+cp .env.example .env
+# Edit .env — configure at least one backend (OpenAI-compatible API, OpenRouter, or local model paths)
+```
+
+`main.py` loads `.env` via `mtcmb_env.load_dotenv()` without overriding variables already set in the shell.
+
+| Variable | Purpose |
+| -------- | ------- |
+| `OPENAI_API_KEY` / `OPENAI_BASE_URL` | OpenAI-compatible API |
+| `OPENROUTER_API_KEY` / `OPENROUTER_MODEL` | OpenRouter remote models |
+| `DEEPSEEK_API_KEY` / `DEEPSEEK_MODEL` | DeepSeek scripts (e.g. TCM-FT enriched build) |
+| `LOCAL_MODEL_*` | Local HuggingFace model directories (`--model-type`) |
+
+#### Unit tests (zero-shot / few-shot / CoT)
+
+Run without real API calls to verify data loading, all three `prompt_type` values, and the evaluation pipeline:
+
+```bash
+python -m unittest discover -s tests -v
+```
 
 ### Answer Module
 

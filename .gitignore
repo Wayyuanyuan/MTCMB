@@ -1,0 +1,57 @@
+# ---------- 密钥与本地配置（保留 .env.example 作为模板）----------
+.env
+.env.*
+!.env.example
+
+# ---------- Python ----------
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+.venv/
+venv/
+env/
+*.egg-info/
+.eggs/
+dist/
+build/
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+.coverage
+htmlcov/
+
+# ---------- IDE / OS ----------
+.idea/
+.vscode/
+*.swp
+*.swo
+*~
+.DS_Store
+Thumbs.db
+desktop.ini
+._*
+
+# ---------- 模型推理与评测输出（本地生成）----------
+output/
+output_few_shot/
+output_CoT/
+**/mid.jsonl
+**/score.json
+**/summary_score.xlsx
+
+# ---------- data/ 中非官方 12 子集的本地衍生文件 ----------
+data/TCM-FT_enriched.jsonl
+data/TCM_FT_*.jsonl
+data/*_enriched.jsonl
+
+# ---------- 本地目录（不参与版本控制）----------
+results/
+scripts/
+tests/
+
+# ---------- 临时与日志 ----------
+*.log
+*.tmp
+*.bak

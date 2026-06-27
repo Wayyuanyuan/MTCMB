@@ -9,7 +9,7 @@ from mtcmb_datasets import Purpose, load_records
 PROMPT_YAML = (
     Path(__file__).resolve().parents[2] / "scripts" / "prompts" / "tcm_qa_points_output.yaml"
 )
-STANDARD_FT_FILE = "3.TCM_FT.jsonl"
+STANDARD_FT_FILE = "TCM-FT.jsonl"
 FEW_SHOT_COUNT = 3
 
 
@@ -25,7 +25,7 @@ def _load_prompt_config() -> dict:
 
 @lru_cache(maxsize=1)
 def _load_few_shot_standard_records() -> tuple[dict, ...]:
-    """前 FEW_SHOT_COUNT 条标准答案（按 id 升序），来自 data/3.TCM_FT.jsonl。"""
+    """前 FEW_SHOT_COUNT 条标准答案（按 id 升序），来自 data/TCM-FT.jsonl。"""
     records = load_records(STANDARD_FT_FILE, purpose=Purpose.STANDARD)
     records.sort(key=lambda r: int(r["id"]))
     return tuple(records[:FEW_SHOT_COUNT])

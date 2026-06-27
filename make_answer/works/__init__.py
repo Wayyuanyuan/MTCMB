@@ -1,4 +1,5 @@
 from typing import Callable
+
 from make_answer.chat.chat_invoker import ChatInvoker
 
 from make_answer.works.TCM_ED_A import tcm_ed_a
@@ -14,8 +15,17 @@ from make_answer.works.TCM_FRD import tcm_frd
 from make_answer.works.TCM_SE_A import tcm_se_a
 from make_answer.works.TCM_SE_B import tcm_se_b
 
-
-question_prompt_dict: dict[str, Callable[[dict, ChatInvoker], dict]] = {
-    "1": tcm_ed_a, "2": tcm_ed_b, "3": tcm_ft,"4": tcmeee, "5": tcm_chgd, "6": tcm_litdata,
-    "7": tcm_msdd, "8": tcm_diagnosis, "9": tcm_pr, "10": tcm_frd, "11": tcm_se_a, "12": tcm_se_b
+question_prompt_dict: dict[str, Callable[[int, dict, ChatInvoker], dict]] = {
+    "TCM-ED-A": tcm_ed_a,
+    "TCM-ED-B": tcm_ed_b,
+    "TCM-FT": tcm_ft,
+    "TCMeEE": tcmeee,
+    "TCM-CHGD": tcm_chgd,
+    "TCM-LitData": tcm_litdata,
+    "TCM-MSDD": tcm_msdd,
+    "TCM-Diagnosis": tcm_diagnosis,
+    "TCM-PR": tcm_pr,
+    "TCM-FRD": tcm_frd,
+    "TCM-SE-A": tcm_se_a,
+    "TCM-SE-B": tcm_se_b,
 }

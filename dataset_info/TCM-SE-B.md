@@ -9,7 +9,7 @@
 
 **评估指标**：准确率（Accuracy）
 
-**数据文件**：`data/12.TCM_SE_B.jsonl`
+**数据文件**：`data/TCM-SE-B.jsonl`
 
 **元数据**：
 
